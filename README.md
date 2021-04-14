@@ -7,8 +7,8 @@ A Pytorch implementation of Generative Adversarial Network for Heuristics of Sam
 ## Table of content
 
 - [Structure](#structure)
-  - [Searching algorithm](#searching algorithm)
-  - [GAN architecture](#GAN architecture)
+  - [Searching algorithm](#searching-algorithm)
+  - [GAN architecture](#gan-architecture)
 - [Training](#training)
 - [Results](#results)
 - [License](#license)
