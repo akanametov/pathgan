@@ -2,7 +2,7 @@ PathGAN
 ======================
 A Pytorch implementation of Generative Adversarial Network for Heuristics of Sampling-based Path Planning
 
-[arXiv article](https://arxiv.org/pdf/2012.03490.pdf)
+[Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
 ## Table of content
 
