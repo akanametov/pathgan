@@ -36,11 +36,11 @@ Comparing `RRT*` and `Heuristic RRT*`:
 
 Overall GAN architecture:
 
-<a><img src="assets/gan.png" align="center" height="400px" width="600px"/></a>
+<a><img src="assets/gan.jpg" align="center" height="400px" width="600px"/></a>
 
 GAN architecture in details:
 
-<a><img src="assets/detailed_gan.png" align="center" height="400px" width="800px"/></a>
+<a><img src="assets/detailed_gan.jpg" align="center" height="400px" width="800px"/></a>
 
 ## Dataset
 
