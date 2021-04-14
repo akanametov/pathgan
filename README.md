@@ -17,13 +17,18 @@ A Pytorch implementation of Generative Adversarial Network for Heuristics of Sam
 
 
 ## Structure
-The overall structure of the PathGAN consists of two things: 1) RRT* searching algorithm and
+
+The overall structure of the PathGAN consists of two things:
+1) RRT* searching algorithm and
 2) Generative Aversarial Network for promising region generation 
+
 ### Searching algorithm
+
 `RRT*` algorithm:
 <a><img src="assets/gan_rrt.png" align="center" height="200px" width="400px"/></a>
+
 Comparing `RRT*` and `Heuristic RRT*`:
-<a><img src="assets/gan_rrt.png" align="center" height="200px" width="300px"/></a>
+<a><img src="assets/rrt_vs_hrrt.png" align="center" height="200px" width="300px"/></a>
 
 ### GAN architecture
 
@@ -31,7 +36,7 @@ Overall GAN architecture:
 <a><img src="assets/gan.png" align="center" height="300px" width="400px"/></a>
 
 GAN architecture in details:
-<a><img src="assets/gan.png" align="center" height="270px" width="400px"/></a>
+<a><img src="assets/detailed_gan.png" align="center" height="270px" width="400px"/></a>
 
 ## Dataset
 
