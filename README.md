@@ -40,7 +40,7 @@ Overall GAN architecture:
 
 GAN architecture in details:
 
-<a><img src="assets/detailed_gan.png" align="center" height="270px" width="400px"/></a>
+<a><img src="assets/detailed_gan.png" align="center" height="270px" width="440px"/></a>
 
 ## Dataset
 
