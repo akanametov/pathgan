@@ -24,21 +24,21 @@ The overall structure of the PathGAN consists of two things:
 
 ### Searching algorithm
 
-`RRT*` algorithm:
+**`RRT*` algorithm:**
 
 <a><img src="assets/gan_rrt.png" align="center" height="150px" width="300px"/></a>
 
-Comparing `RRT*` and `Heuristic RRT*`:
+**Comparing `RRT*` and `Heuristic RRT*`:**
 
 <a><img src="assets/rrt_vs_hrrt.png" align="center" height="330px" width="350px"/></a>
 
 ### GAN architecture
 
-Overall GAN architecture:
+**Overall `GAN` architecture:**
 
 <a><img src="assets/gan.jpg" align="center" height="400px" width="600px"/></a>
 
-GAN architecture in details:
+**`GAN` architecture in details:**
 
 <a><img src="assets/detailed_gan.jpg" align="center" height="400px" width="800px"/></a>
 
