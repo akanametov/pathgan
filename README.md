@@ -7,7 +7,7 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 ## `ROI` generation:
 - [Download](https://github.com/akanametov/PathGAN/releases/download/1.0/dataset.zip) existing dataset
 - Unzip it and put into `data/` as follows `data/dataset/`
-- Open [roi_generation.ipynb](https://github.com/akanametov/PathGAN/blob/main/roi_generation.ipynb) and generate needed `ROI`s
+- Open [roi_generation.ipynb](https://github.com/akanametov/PathGAN/blob/main/roi_generation.ipynb) and generate needed `ROIs`
 
 ## Table of content
 
