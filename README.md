@@ -4,6 +4,8 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
+[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+
 ## `ROI` generation:
 - [Download](https://github.com/akanametov/PathGAN/releases/download/1.0/dataset.zip) existing dataset
 - Unzip it and put into `data/` as follows `data/dataset/`
@@ -49,6 +51,7 @@ The overall structure of the PathGAN consists of two things:
 
 ## Dataset
 
+[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
 
 ## Training
 
