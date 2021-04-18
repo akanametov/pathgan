@@ -4,7 +4,7 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
-[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+[## Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
 
 ## Table of content
 
