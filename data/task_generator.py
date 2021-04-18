@@ -1,7 +1,7 @@
 import os
 import argparse
 
-from data.utils import TaskGenerator
+from utils import TaskGenerator
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog = 'top', description='Run Tasks Generator')
