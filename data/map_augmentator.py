@@ -1,7 +1,7 @@
 import os
 import argparse
 
-from data.utils import MapAugmentator 
+from utils import MapAugmentator 
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog = 'top', description='Run Map Augmentator')
