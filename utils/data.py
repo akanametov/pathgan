@@ -6,7 +6,7 @@ from PIL import Image
 import torch
 from torch.utils.data import Dataset
 
-class MapPointROIDataset(Dataset):
+class MapPointRegionDataset(Dataset):
     def __init__(self,
                  map_dir,
                  point_dir,
