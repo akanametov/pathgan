@@ -6,11 +6,11 @@ from utils import TaskGenerator
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog = 'top', description='Run Tasks Generator')
 
-    parser.add_argument('--load_dir', default='data/dataset/maps',
-                        help='Load directory (default: "data/dataset/maps")')
+    parser.add_argument('--load_dir', default='dataset/maps',
+                        help='Load directory (default: "dataset/maps")')
     
-    parser.add_argument('--save_dir', default='data/dataset/tasks',
-                        help='Save directory (default: "data/dataset/tasks")')
+    parser.add_argument('--save_dir', default='dataset/tasks',
+                        help='Save directory (default: "dataset/tasks")')
     
     parser.add_argument('--min_length', type=int, default=30,
                         help='Minimal Euclidian distance between "start" and "goal" points (default: 30)')
