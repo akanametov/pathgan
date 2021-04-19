@@ -2,7 +2,7 @@ import os
 import argparse
 from multiprocessing import Process
 
-from ..path.rrt import RRT
+from rrt import RRT
 from utils import ROIGenerator
 
 def run_generator(roi_generator, map_name):
