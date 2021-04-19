@@ -17,14 +17,14 @@ if __name__ == '__main__':
     parser.add_argument('--to', type=int, default=None,
                         help='Map "to" which ROI will be obtained (default: None)')
     
-    parser.add_argument('--map_dir', default='data/dataset/maps',
-                        help='Maps directory (default: "data/dataset/maps")')
+    parser.add_argument('--map_dir', default='dataset/maps',
+                        help='Maps directory (default: "dataset/maps")')
     
-    parser.add_argument('--task_dir', default='data/dataset/tasks',
-                        help='Tasks directory (default: "data/dataset/tasks")')
+    parser.add_argument('--task_dir', default='dataset/tasks',
+                        help='Tasks directory (default: "dataset/tasks")')
     
-    parser.add_argument('--save_dir', default='data/dataset/tasks',
-                        help='Save directory (default: "data/dataset/tasks")')
+    parser.add_argument('--save_dir', default='dataset/tasks',
+                        help='Save directory (default: "dataset/tasks")')
     
     parser.add_argument('--n_runs', type=int, default=50,
                         help='Number of times searching algorithm will be runned per one map (default: 50)')
