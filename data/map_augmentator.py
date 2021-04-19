@@ -6,11 +6,11 @@ from utils import MapAugmentator
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog = 'top', description='Run Map Augmentator')
 
-    parser.add_argument('--load_dir', default='data/dataset/init_maps',
-                        help='Load directory (default: "data/dataset/init_maps")')
+    parser.add_argument('--load_dir', default='dataset/init_maps',
+                        help='Load directory (default: "dataset/init_maps")')
     
-    parser.add_argument('--save_dir', default='data/dataset/maps',
-                        help='Save directory (default: "data/dataset/maps")')
+    parser.add_argument('--save_dir', default='dataset/maps',
+                        help='Save directory (default: "dataset/maps")')
     
     parser.add_argument('--height_shift', type=int, default=2,
                         help='Number of pixels in which map can be shifted "Up" and "Down" (default: 2)')
