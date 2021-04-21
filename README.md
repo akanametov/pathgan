@@ -52,7 +52,7 @@ The overall structure of the PathGAN consists of two things:
 
 ## Results
 
-**[Results](https://disk.yandex.ru/d/jObhWjtA2KbR6w) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
+**[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
 
 <a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
 
@@ -76,4 +76,4 @@ This project is licensed under MIT.
 
 * **[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
 
-* **[Results](https://disk.yandex.ru/d/jObhWjtA2KbR6w)**
+* **[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)**
