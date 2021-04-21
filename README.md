@@ -57,6 +57,7 @@ The overall structure of the PathGAN consists of two things:
 <a><img src="assets/result.png" align="center" height="600px" width="750px"/></a>
 
 **RRT `-->` True ROI `-->` Pred ROI `-->` IoU**
+
 **mIoU = 0.957 (`average` IoU for all 2,000 samples in `test set`)**
 
 ## License
