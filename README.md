@@ -46,11 +46,15 @@ The overall structure of the PathGAN consists of two things:
 
 ## Dataset
 
-[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+**[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) of 10,000 samples in (`Map`, `Point`, `ROI`) sets:**
+- train set (8,000 samples)
+- test set (2,000 samples)
 
 ## Training
 
 ## Results
+
+**[Results](https://disk.yandex.ru/d/jObhWjtA2KbR6w) on test set of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above.**
 
 <a><img src="assets/result.png" align="center" height="600px" width="750px"/></a>
 
