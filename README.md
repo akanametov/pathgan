@@ -54,11 +54,13 @@ The overall structure of the PathGAN consists of two things:
 
 **[Results](https://disk.yandex.ru/d/jObhWjtA2KbR6w) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
 
-<a><img src="assets/result.png" align="center" height="600px" width="750px"/></a>
+<a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
 
 **RRT `-->` True ROI `-->` Pred ROI `-->` IoU**
 
-**mIoU = 0.957 (`average Intersection over Union` for all 2,000 samples in `test set`)**
+**mIoU = 0.702 (`average Intersection over Union` for all 2,000 samples in `test set`)**
+
+**mDICE = 0.820 (`average DICE` for all 2,000 samples in `test set`)**
 
 **mFID = 79.609 (`average Frechet Inception Distance` for all 2,000 samples in `test set`)**
 
