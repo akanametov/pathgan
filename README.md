@@ -52,7 +52,7 @@ The overall structure of the PathGAN consists of two things:
 
 ## Results
 
-<a><img src="assets/result.png" align="center" height="400px" width="500px"/></a>
+<a><img src="assets/result.png" align="center" height="600px" width="750px"/></a>
 
 ## License
 
