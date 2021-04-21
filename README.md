@@ -52,6 +52,8 @@ The overall structure of the PathGAN consists of two things:
 
 ## Results
 
+<a><img src="assets/result.png" align="center" height="400px" width="500px"/></a>
+
 ## License
 
 This project is licensed under MIT.
