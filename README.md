@@ -54,9 +54,9 @@ The overall structure of the PathGAN consists of two things:
 
 **[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
 
-<a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
-
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
+<a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
 
 **mIoU = 0.702 (`average Intersection over Union` for all 2,000 samples in `test set`)**
 
