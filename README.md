@@ -51,7 +51,7 @@ The overall structure of the PathGAN consists of two things:
 ## Training
 
 ## Results
-**RRT** `-->` **True ROI** `-->` **Pred ROI** `-->` **IoU**
+**RRT `-->` True ROI `-->` Pred ROI `-->` IoU**
 
 <a><img src="assets/result.png" align="center" height="600px" width="750px"/></a>
 
