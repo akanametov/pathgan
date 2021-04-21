@@ -59,6 +59,8 @@ The overall structure of the PathGAN consists of two things:
 **RRT `-->` True ROI `-->` Pred ROI `-->` IoU**
 
 **mIoU = 0.957 (`average` IoU for all 2,000 samples in `test set`)**
+**mFID = 79.609 (`average` Frechet Inception Distance for all 2,000 samples in `test set`)**
+**mIS = 1.019 (`average` Inception Score for all 250 batches (2,000 samples/(8 samples per batch) = 250 batches in `test set`)
 
 ## License
 
