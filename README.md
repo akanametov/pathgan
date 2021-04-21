@@ -66,6 +66,8 @@ This project is licensed under MIT.
 
 ## Links
 
-* [Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)
+* **[Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)**
 
-* [Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+* **[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
+
+* **[Results](https://disk.yandex.ru/d/jObhWjtA2KbR6w)**
