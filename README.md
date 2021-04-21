@@ -54,7 +54,7 @@ The overall structure of the PathGAN consists of two things:
 
 **[Results](https://disk.yandex.ru/d/jObhWjtA2KbR6w) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
 
-<a><img src="assets/result.png" align="center" height="600px" width="750px"/></a>
+
 
 **RRT `-->` True ROI `-->` Pred ROI `-->` IoU**
 
