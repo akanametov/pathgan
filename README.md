@@ -54,6 +54,8 @@ The overall structure of the PathGAN consists of two things:
 
 **[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
 
+### Results of `Generator` from original paper
+
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
 <a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
@@ -65,6 +67,20 @@ The overall structure of the PathGAN consists of two things:
 **mFID = 79.609 (`average Frechet Inception Distance` for all 2,000 samples in `test set`)**
 
 **mIS = 1.019 (`average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`)**
+
+### Results of our `pix2pix Generator`
+
+**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
+<a><img src="assets/pixresults.png" align="center" height="600px" width="750px"/></a>
+
+**mIoU = 0.581 (`average Intersection over Union` for all 2,000 samples in `test set`)**
+
+**mDICE = 0.722 (`average DICE` for all 2,000 samples in `test set`)**
+
+**mFID = 91.199 (`average Frechet Inception Distance` for all 2,000 samples in `test set`)**
+
+**mIS = 1.017 (`average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`)**
 
 ## License
 
