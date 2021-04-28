@@ -82,6 +82,10 @@ The overall structure of the PathGAN consists of two things:
 
 **mIS = 1.017 (`average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`)**
 
+### Comparing `Generators`
+
+<a><img src="assets/pix_vs_orig_iou.png" align="center" height="300px" width="400px"/></a>
+
 ## License
 
 This project is licensed under MIT.
