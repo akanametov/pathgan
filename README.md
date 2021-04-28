@@ -84,7 +84,7 @@ The overall structure of the PathGAN consists of two things:
 
 ### Comparing `Generators`
 
-<a><img src="assets/pix_vs_orig_iou.png" align="center" height="300px" width="400px"/></a>
+<a><img src="assets/pix_vs_orig_iou.png" align="center" height="300px" width="450px"/></a>
 
 ## License
 
