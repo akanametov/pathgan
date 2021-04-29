@@ -5,10 +5,9 @@ class RRT():
     def __init__(self,):
         self.step_len = 0.5
         self.goal_prob = 0.05
-        self.iter_max = 100000
         self.delta = 0.5
         
-    def search(self, grid, start, goal, max_iter=100000):
+    def run(self, grid, start, goal, max_iter=100000):
         self.start = start
         self.goal = goal
         self.grid = grid
@@ -31,7 +30,7 @@ class RRT():
         if (self.grid[int(start[0]), int(start[1])]==0) or (self.grid[int(goal[0]), int(goal[1])]==0):
             return True
         
-    def getRandomState(self, dx=1, eps=0.05):#dx=0.5
+    def getRandomState(self, dx=1, eps=0.05):
         if np.random.uniform() < eps:
             return self.goal
         else:

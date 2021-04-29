@@ -4,11 +4,6 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
-## `ROI` generation:
-- [Download](https://github.com/akanametov/PathGAN/releases/download/1.0/dataset.zip) existing dataset
-- Unzip it and put into `data/` as follows `data/dataset/`
-- Open [roi_generation.ipynb](https://github.com/akanametov/PathGAN/blob/main/roi_generation.ipynb) and generate needed `ROIs`
-
 ## Table of content
 
 - [Structure](#structure)
@@ -49,10 +44,47 @@ The overall structure of the PathGAN consists of two things:
 
 ## Dataset
 
+**[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) of 10,000 samples (`Map`, `Point`, `ROI`):**
+- train set (8,000 samples)
+- test set (2,000 samples)
 
 ## Training
 
 ## Results
+
+**[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
+
+### Results of `Generator` from original paper
+
+**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
+<a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
+
+**mIoU = 0.702 (`average Intersection over Union` for all 2,000 samples in `test set`)**
+
+**mDICE = 0.820 (`average DICE` for all 2,000 samples in `test set`)**
+
+**mFID = 79.609 (`average Frechet Inception Distance` for all 2,000 samples in `test set`)**
+
+**mIS = 1.019 (`average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`)**
+
+### Results of our `pix2pix Generator`
+
+**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
+<a><img src="assets/pixresult.png" align="center" height="600px" width="750px"/></a>
+
+**mIoU = 0.581 (`average Intersection over Union` for all 2,000 samples in `test set`)**
+
+**mDICE = 0.722 (`average DICE` for all 2,000 samples in `test set`)**
+
+**mFID = 91.199 (`average Frechet Inception Distance` for all 2,000 samples in `test set`)**
+
+**mIS = 1.017 (`average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`)**
+
+### Comparing `Generators`
+
+<a><img src="assets/pix_vs_orig_iou.png" align="center" height="300px" width="450px"/></a>
 
 ## License
 
@@ -60,7 +92,8 @@ This project is licensed under MIT.
 
 ## Links
 
-* [Generative Adversarial Network based Heuristics
-for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)
+* **[Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)**
 
-* [GAN Path Finder (arXiv article)](https://arxiv.org/pdf/1908.01499.pdf)
+* **[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
+
+* **[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)**

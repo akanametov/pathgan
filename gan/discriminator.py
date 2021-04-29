@@ -1,3 +1,5 @@
+import torch
+from torch import nn
 from .modules import ConvLeakyReLU, ConvBnLeakyReLU
 from .modules import SelfAttention
 
