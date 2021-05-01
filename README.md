@@ -92,6 +92,12 @@ The overall structure of the PathGAN consists of two things:
 
 ### Results of `Generator` from original paper
 
+| GAN           |      mIou     |    mDICE    |    mFID    |    mIS    |
+| ------------- |:-------------:|:-----------:|:----------:|:----------|
+| Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |
+| Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |
+
+
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
 <a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
