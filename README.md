@@ -99,13 +99,13 @@ The overall structure of the PathGAN consists of two things:
 
 *- parameters of `Generator`
 
-- **mIoU - `average Intersection over Union` for all 2,000 samples in `test set`**
+- mIoU - `average Intersection over Union` for all 2,000 samples in `test set`
 
-- **mDICE -`average DICE` for all 2,000 samples in `test set`**
+- mDICE -`average DICE` for all 2,000 samples in `test set`
 
-- **mFID -`average Frechet Inception Distance` for all 2,000 samples in `test set`**
+- mFID -`average Frechet Inception Distance` for all 2,000 samples in `test set`
 
-- **mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`**
+- mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`
 
 `Original Generator`
 <a><div title="Original">
