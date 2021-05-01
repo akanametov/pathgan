@@ -108,13 +108,9 @@ The overall structure of the PathGAN consists of two things:
 - **mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`**
 
 <a><div class="column">
-    <img src="assets/results.png" align="center" height="300px" width="375px"/>
-    <img src="assets/pixresult.png" align="center" height="300px" width="375px"/>
+    <img title="a title" alt="Alt text" src="assets/results.png" align="center" height="300px" width="375px"/>
+    <img title="a title" alt="Alt text" src="assets/pixresult.png" align="center" height="300px" width="375px"/>
 </div></a>
-
-### Comparing `Generators`
-
-<a><img src="assets/pix_vs_orig_iou.png" align="center" height="300px" width="450px"/></a>
 
 ## License
 
