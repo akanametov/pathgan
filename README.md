@@ -60,8 +60,6 @@ The overall structure of the PathGAN consists of two things:
 
 ### Searching algorithm
 
-**`RRT*` algorithm:**
-
 <a><img src="assets/gan_rrt.png" align="center" height="150px" width="350px"/></a>
 
 ### GAN architecture
