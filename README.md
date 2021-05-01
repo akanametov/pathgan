@@ -39,7 +39,61 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
     ├── LICENSE
     └── README.md
 ```
-
+```
+│   LICENSE
+│   README.md
+│   roi_generation.ipynb
+│   train.py
+│
+├───assets
+│       detailed_gan.jpg
+│       gan.jpg
+│       gan_rrt.png
+│       pixresult.png
+│       pix_vs_orig_iou.png
+│       project_description.pdf
+│       project_presentation.pdf
+│       results.png
+│       rrt_vs_hrrt.png
+│
+├───data
+│   │   demo.ipynb
+│   │   map_augmentator.py
+│   │   roi_generator.py
+│   │   rrt.py
+│   │   task_generator.py
+│   │   utils.py
+│   │   __init__.py
+│   └───movingai
+│
+├───gan
+│   │   discriminator.py
+│   │   generator.py
+│   │   modules.py
+│   │   __init__.py
+│   │
+│   ├───pix2pix
+│   │       blocks.py
+│   │       trainer.py
+│   │       utils.py
+│   │       __init__.py
+│   │
+│   └───utils
+│           criterion.py
+│           data.py
+│           metrics.py
+│           trainer.py
+│           __init__.py
+│
+└───path
+        rrt.py
+        RRT_.py
+        rrt_star.py
+        rrt_star_test.mp4
+        rrt_star_test.png
+        RRT_updated.py
+        __init__.py
+```
 ## Table of content
 
 - [Structure](#structure)
