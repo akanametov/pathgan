@@ -92,10 +92,10 @@ The overall structure of the PathGAN consists of two things:
 
 ### Results of `Generator` from original paper
 
-| GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params (in millions) |
-| ------------- |:-------------:|:-----------:|:----------:|:---------:|:---------------------------:| 
-| Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |          21                 |
-| Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |           4                 |
+| GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params |
+| ------------- |:-------------:|:-----------:|:----------:|:---------:|:----------------:| 
+| Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |   21 Millions    |
+| Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |    4 Millions    |
 
 - **mIoU - `average Intersection over Union` for all 2,000 samples in `test set`**
 
