@@ -64,10 +64,6 @@ The overall structure of the PathGAN consists of two things:
 
 <a><img src="assets/gan_rrt.png" align="center" height="150px" width="350px"/></a>
 
-**Comparing `RRT*` and `Heuristic RRT*`:**
-
-<a><img src="assets/rrt_vs_hrrt.png" align="center" height="350px" width="340px"/></a>
-
 ### GAN architecture
 
 <a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
