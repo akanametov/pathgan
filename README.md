@@ -93,6 +93,8 @@ The overall structure of the PathGAN consists of two things:
 
 - mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`
 
+**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
 `Original Generator`
 <a><div title="Original">
     <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="500px"/>
