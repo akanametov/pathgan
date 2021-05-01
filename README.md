@@ -97,12 +97,14 @@ The overall structure of the PathGAN consists of two things:
 <a><div title="Original">
     <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="500px"/>
 </div></a>
+
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
 `Pix2Pix Generator`
 <a><div title="Pix2Pix">
     <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
 </div></a>
+
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
 ## License
