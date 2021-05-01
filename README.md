@@ -93,7 +93,7 @@ The overall structure of the PathGAN consists of two things:
 ### Results of `Generator` from original paper
 
 | GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params (in millions) |
-| ------------- |:-------------:|:-----------:|:----------:|:---------:|:----------------------------| 
+| ------------- |:-------------:|:-----------:|:----------:|:---------:|:---------------------------:| 
 | Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |          21                 |
 | Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |           4                 |
 
