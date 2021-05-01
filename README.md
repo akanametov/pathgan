@@ -90,7 +90,7 @@ The overall structure of the PathGAN consists of two things:
 
 **[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
 
-### Results of `Generator` from original paper
+### Results of `GAN's`
 
 | GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params * |
 | ------------- |:-------------:|:-----------:|:----------:|:---------:|:------------------:| 
@@ -107,9 +107,8 @@ The overall structure of the PathGAN consists of two things:
 
 - **mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`**
 
-**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
-![**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**](assets/results.png)
+![](assets/results.png "**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**")
 
 <a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
 
