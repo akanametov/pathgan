@@ -72,20 +72,18 @@ The overall structure of the PathGAN consists of two things:
 - train set (8,000 samples)
 - test set (2,000 samples)
 
-[Link to the dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+**[Link to the dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
 
 ## Training
 
 ## Results
 
-**[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set` of [dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ) above:**
+| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params * |
+| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:| 
+| Original      |[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)|    70.2%      |    82.0%    |    79.7    |   1.019   |     21,231,827     |
+| Pix2Pix       |[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q|    58.1%      |    72.2%    |    91.2    |   1.017   |      4,170,477     |
 
-### Results of `GAN's`
-
-| GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params * |
-| ------------- |:-------------:|:-----------:|:----------:|:---------:|:------------------:| 
-| Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |     21,231,827     |
-| Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |      4,170,477     |
+**[Link to the ROI's](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) on `test set`**
 
 *- parameters of `Generator`
 
