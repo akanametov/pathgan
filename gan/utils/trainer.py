@@ -1,29 +1,10 @@
-import torch
-import matplotlib.pyplot as plt
-from torchvision.utils import make_grid
+from progress.bar import IncrementalBar
 
-from tqdm.notebook import tqdm
-from IPython.display import clear_output
+import torch
+from torchvision.utils import make_grid
+from torchvision.transforms import ToPILImage
 
 from .criterion import PixelwiseLossMSE 
-
-######################################
-####### Function to show images  #####
-######################################
-
-def showImage(img_data, title):
-    '''
-    Function for visualizing images: Given a tensor of images, number of images, and
-    size per image, plots and prints the images in an uniform grid.
-    '''
-    img_data = img_data.detach().cpu()
-    img_data = torch.clip(img_data, 0, 1)
-    img_grid = make_grid(img_data[:4], nrow=4)
-    plt.axis('off')
-    plt.title(title)
-    plt.imshow(img_grid.permute(1, 2, 0).squeeze())
-    plt.show()
-    
     
 class Trainer():
     def __init__(self,
@@ -58,7 +39,8 @@ class Trainer():
             ge_loss=0.
             mde_loss=0.
             pde_loss=0.
-            for k, (real_map, real_point, real_roi) in enumerate(tqdm(dataloader)):
+            bar = IncrementalBar(f'Epoch {epoch+1}/{epochs}:', max=len(dataloader))
+            for real_map, real_point, real_roi in dataloader:
                 b, _, h, w = real_map.size() 
                 noise = torch.rand(b, 1, h, w)
                 real_map = real_map.to(device)
@@ -102,17 +84,10 @@ class Trainer():
                 ge_loss += gen_loss.item()
                 mde_loss += map_loss.item()
                 pde_loss += point_loss.item()
-                if i%200 ==0:
-                    clear_output(wait=True)
-                    print(f'::::::::::  Epoch {epoch+1}  :::: Iteration {i}  :::::::::::')
-                    print(f'::::::::::: Generator loss: {gen_loss.item():.3f} :::::::::::')
-                    print(f'::::::::: Map Discriminator loss: {map_loss.item():.3f} :::::::::')
-                    print(f'::::::::: Point Discriminator loss: {point_loss.item():.3f} :::::::::')
-                    showImage(fake_roi.to(real_roi.dtype), 'Generated Output Image')
-                    showImage(real_roi, 'Real Output Image')
-                i += 1
-                
+                bar.next()
+            bar.finish()    
             g_losses.append(ge_loss/len(dataloader))
             md_losses.append(mde_loss/len(dataloader))
             pd_losses.append(pde_loss/len(dataloader))
+            
         self.data={'g_loss': g_losses, 'md_loss': md_losses, 'pd_loss': pd_losses}
