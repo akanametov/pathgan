@@ -6,28 +6,37 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 
     .
-    ├── assets                   # Compiled files (alternatively `dist`)
-    ├── data                    # Documentation files (alternatively `doc`)
-    │   ├── benchmarks          # Load and stress tests
-    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-    │   └── unit  
+    ├── assets                  # Images, results
+    ├── data                    # Dataset location & data generation
+    │   ├── map_augmentator.py  
+    │   ├── task_generator.py   
+    │   ├── roi_generator.py 
+    │   ├── rrt.py
+    │   ├── utils.py 
+    │   └── dataset
     ├── gan                     # Scripts for GANs (original & pix2pix)
-    │   ├── generator.py        # Generator from original paper
-    │   ├── discriminator.py    # Discriminators from original paper
-    │   ├── modules.py          # Helpfull blocks to construct models
-    │   ├── checkpoint            # Losses Functions 
-    │   └── utils
-    |       ├── data.py
-    |       ├── criterion.py
-    |       ├── metrics.py
-    |       └── trainer.py
-    ├── path                    # Automated tests (alternatively `spec` or `tests`)
-    │   ├── benchmarks          # Load and stress tests
-    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-    │   └── unit  
-    ├── train.py                  # Tools and utilities
-    ├── train_pix2pix.py
-    ├── roi_generation.ipynb    #
+    │   ├── generator.py        
+    │   ├── discriminator.py    
+    │   ├── modules.py          
+    │   ├── checkpoint            
+    │   ├── utils
+    |   |   ├── data.py
+    |   |   ├── criterion.py
+    |   |   ├── metrics.py
+    |   |   └── trainer.py
+    │   └── pix2pix
+    |       ├── __init__.py
+    |       ├── blocks.py
+    |       ├── trainer.py
+    |       └── utils.py
+    ├── path                    # Scripts for pathfinding
+    │   ├── rrt.py              
+    │   ├── rrt_star.py         
+    │   ├── RRT_updated.py 
+    │   └── RRT_.py  
+    ├── train.py                # To train GAN from the paper 
+    ├── train_pix2pix.py        # To tran our Pix2Pix GAN 
+    ├── roi_generation.ipynb    # To generate ROIs
     ├── LICENSE
     └── README.md
 
