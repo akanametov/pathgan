@@ -4,6 +4,33 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
+
+    .
+    ├── assets                   # Compiled files (alternatively `dist`)
+    ├── data                    # Documentation files (alternatively `doc`)
+    │   ├── benchmarks          # Load and stress tests
+    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+    │   └── unit  
+    ├── gan                     # Scripts for GANs (original & pix2pix)
+    │   ├── generator.py        # Generator from original paper
+    │   ├── discriminator.py    # Discriminators from original paper
+    │   ├── modules.py          # Helpfull blocks to construct models
+    │   ├── checkpoint            # Losses Functions 
+    │   └── utils
+    |       ├── data.py
+    |       ├── criterion.py
+    |       ├── metrics.py
+    |       └── trainer.py
+    ├── path                    # Automated tests (alternatively `spec` or `tests`)
+    │   ├── benchmarks          # Load and stress tests
+    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+    │   └── unit  
+    ├── train.py                  # Tools and utilities
+    ├── train_pix2pix.py
+    ├── roi_generation.ipynb    #
+    ├── LICENSE
+    └── README.md
+
 ## Table of content
 
 - [Structure](#structure)
