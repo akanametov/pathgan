@@ -97,7 +97,7 @@ The overall structure of the PathGAN consists of two things:
 | Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |     21,231,827     |
 | Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |      4,170,477     |
 
-** * ** - parameters of `Generator`
+> * - parameters of `Generator`
 
 - **mIoU - `average Intersection over Union` for all 2,000 samples in `test set`**
 
