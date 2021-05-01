@@ -95,12 +95,12 @@ The overall structure of the PathGAN consists of two things:
 
 `Original Generator`
 <a><div title="Original">
-    <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="360px" width="450px"/>
+    <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="50px"/>
 </div></a>
 
 `Pix2Pix Generator`
 <a><div title="Pix2Pix">
-    <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="360px" width="450px"/>
+    <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
 </div></a>
 
 ## License
