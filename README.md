@@ -97,13 +97,13 @@ The overall structure of the PathGAN consists of two things:
 | Original      |    70.2%      |    82.0%    |    79.7    |   1.019   |
 | Pix2Pix       |    58.1%      |    72.2%    |    91.2    |   1.017   |
 
-- **mIoU = 0.581 (`average Intersection over Union` for all 2,000 samples in `test set`)**
+- **mIoU - `average Intersection over Union` for all 2,000 samples in `test set`**
 
-- **mDICE = 0.722 (`average DICE` for all 2,000 samples in `test set`)**
+- **mDICE -`average DICE` for all 2,000 samples in `test set`**
 
-- **mFID = 91.199 (`average Frechet Inception Distance` for all 2,000 samples in `test set`)**
+- **mFID -`average Frechet Inception Distance` for all 2,000 samples in `test set`**
 
-- **mIS = 1.017 (`average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`)**
+- **mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`**
 
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
