@@ -107,16 +107,10 @@ The overall structure of the PathGAN consists of two things:
 
 - **mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`**
 
-
-![](assets/results.png "**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**")
-
-<a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
-
-### Results of our `pix2pix Generator`
-
-**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
-
-<a><img src="assets/pixresult.png" align="center" height="600px" width="750px"/></a>
+<a><div class="column">
+    <img src="assets/results.png" align="center" height="300px" width="375px"/>
+    <img src="assets/pixresult.png" align="center" height="300px" width="375px"/>
+</div></a>
 
 ### Comparing `Generators`
 
