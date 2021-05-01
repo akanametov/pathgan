@@ -107,6 +107,8 @@ The overall structure of the PathGAN consists of two things:
 
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
+![**RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**](assets/results.png)
+
 <a><img src="assets/results.png" align="center" height="600px" width="750px"/></a>
 
 ### Results of our `pix2pix Generator`
