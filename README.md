@@ -4,31 +4,31 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
-
+```bash
     .
-    ├── /assets                  # Images, results
-    ├── /data                    # Dataset location & data generation
+    ├── assets                  # Images, results
+    ├── data                    # Dataset location & data generation
     │   ├── map_augmentator.py  
     │   ├── task_generator.py   
     │   ├── roi_generator.py 
     │   ├── rrt.py
     │   ├── utils.py 
     │   └── dataset
-    ├── /gan                     # Scripts for GANs (original & pix2pix)
+    ├── gan                     # Scripts for GANs (original & pix2pix)
     │   ├── generator.py        
     │   ├── discriminator.py    
     │   ├── modules.py          
     │   ├── checkpoint            
-    │   ├── /utils
+    │   ├── utils
     |   |   ├── data.py
     |   |   ├── criterion.py
     |   |   ├── metrics.py
     |   |   └── trainer.py
-    │   └── /pix2pix
+    │   └── pix2pix
     |       ├── blocks.py
     |       ├── trainer.py
     |       └── utils.py
-    ├── /path                    # Scripts for pathfinding
+    ├── path                    # Scripts for pathfinding
     │   ├── rrt.py              
     │   ├── rrt_star.py         
     │   ├── RRT_updated.py 
@@ -38,6 +38,7 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
     ├── roi_generation.ipynb    # To generate ROIs
     ├── LICENSE
     └── README.md
+```
 
 ## Table of content
 
