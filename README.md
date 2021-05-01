@@ -70,13 +70,7 @@ The overall structure of the PathGAN consists of two things:
 
 ### GAN architecture
 
-**Overall `GAN` architecture:**
-
-<a><img src="assets/gan.jpg" align="center" height="400px" width="600px"/></a>
-
-**`GAN` architecture in details:**
-
-<a><img src="assets/detailed_gan.jpg" align="center" height="400px" width="800px"/></a>
+<a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
 
 ## Dataset
 
