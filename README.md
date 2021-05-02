@@ -4,6 +4,8 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
+![path](path/rrt_star_test.mp4)
+
 ```
     .
     ├── assets                  # Images, results
