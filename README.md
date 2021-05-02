@@ -4,8 +4,6 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
-<img src="assets/test_anim.gif" width="300" height="300">
-
 ```
     .
     ├── assets                  # Images, results
@@ -64,6 +62,10 @@ The overall structure of the PathGAN consists of two things:
 ### Searching algorithm
 
 <a><img src="assets/gan_rrt.png" align="center" height="150px" width="350px"/></a>
+
+**Path searching by `RRT*`**
+
+<img src="assets/test_anim.gif" width="300" height="300">
 
 ### GAN architecture
 
