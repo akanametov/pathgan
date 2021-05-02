@@ -86,7 +86,7 @@ The overall structure of the PathGAN consists of two things:
 | GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params * |
 | ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:| 
 | Original (from paper)      |[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)|    70.2%      |    82.0%    |    79.7    |   1.019   |     21,231,827     |
-| Pix2Pix (our)      |[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)|    58.1%      |    72.2%    |    91.2    |   1.017   |      4,170,477     |
+| Pix2Pix (ours)      |[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)|    58.1%      |    72.2%    |    91.2    |   1.017   |      4,170,477     |
 
 *- parameters of `Generator`
 
@@ -98,15 +98,15 @@ The overall structure of the PathGAN consists of two things:
 
 - mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`
 
-`Original Generator`
-<a><div title="Original">
+`Original Generator (from paper)`
+<a><div title="Original (from paper)">
     <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="500px"/>
 </div></a>
 
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
-`Pix2Pix Generator`
-<a><div title="Pix2Pix">
+`Pix2Pix Generator (ours)`
+<a><div title="Pix2Pix (ours)">
     <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
 </div></a>
 
@@ -118,8 +118,7 @@ This project is licensed under MIT.
 
 ## Links
 
-* **[Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)**
-
-* **[Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
-
-* **[Results](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)**
+* [Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)
+* [Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+* [Results (ROI's) of Original Generator (from paper)](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)
+* [Results (ROI's) of Pix2Pix Generator (ours)](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)
