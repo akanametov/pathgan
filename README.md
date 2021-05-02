@@ -43,7 +43,7 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 
 ## Table of content
 
-- [Structure](#structure)
+- [Introduction](#introduction)
   - [Searching algorithm](#searching-algorithm)
   - [GAN architecture](#gan-architecture)
 - [Dataset](#dataset)
@@ -53,7 +53,7 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 - [Links](#links)
 
 
-## Structure
+## Introduction
 
 The overall structure of the PathGAN consists of two things:
 1) RRT* searching algorithm and
