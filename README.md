@@ -75,6 +75,12 @@ The overall structure of the PathGAN consists of two things:
 
 **Dataset consists of 10,000 samples (`Map`, `Point`, `ROI`):**
 
+<a><div class="column">
+    <img title="Map" alt="Alt text" src="assets/map_4.jpg" align="center" height="250px" width="250px"/>
+    <img title="Point" alt="Alt text" src="assets/task_29.jpg" align="center" height="250px" width="250px"/>
+    <img title="ROI" alt="Alt text" src="assets/task_29_roi.jpg" align="center" height="250px" width="250px"/>
+</div></a>
+
 - train set (8,000 samples)
 - test set (2,000 samples)
 
