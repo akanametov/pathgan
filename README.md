@@ -90,10 +90,10 @@ The overall structure of the PathGAN consists of two things:
 
 ## Results
 
-| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params * |
-| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:| 
-| Original (from paper)      |[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)|    70.2%      |    82.0%    |    79.7    |   1.019   |     21,231,827     |
-| Pix2Pix (ours)      |[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)|    58.1%      |    72.2%    |    91.2    |   1.017   |      4,170,477     |
+| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | Number of params * | Checkpoints |
+| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:|:------------:|
+| Original (from paper)|[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)| 70.2% | 82.0% | 79.7 | 1.019 | 21,231,827 | [Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) | 
+| Pix2Pix (ours)|[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)| 58.1% | 72.2% | 91.2 | 1.017 | 4,170,477 | [Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q) |
 
 *- parameters of `Generator`
 
