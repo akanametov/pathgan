@@ -5,7 +5,7 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
 [Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
 
 ```
-    ./
+    .
     ├── assets                  # Images, results
     ├── data                    # Dataset location & data generation
     │   ├── movingai
