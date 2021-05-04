@@ -6,6 +6,18 @@ import torch.nn as nn
 ##################################
 
 class ConvLReLU(nn.Module):
+    '''
+    Conv2d + LeakyReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        alpha (default: float=0.2): alpha of LeakyReLU
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1, alpha=0.2):
@@ -22,6 +34,17 @@ class ConvLReLU(nn.Module):
 ##################################
 
 class ConvTanh(nn.Module):
+    '''
+    Conv2d + Tanh
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=1): kernel_size of Conv2d
+        stride (default: int=1): stride of Conv2d
+        padding (default: int=0): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=1, stride=1, padding=0):
@@ -38,6 +61,18 @@ class ConvTanh(nn.Module):
 ##################################
 
 class ConvBnLReLU(nn.Module):
+    '''
+    Conv2d + BatchNorm2d + LeakyReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        alpha (default: float=0.2): alpha of LeakyReLU
+        
+    '''
     def __init__(self, in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1, alpha=0.2):
         super().__init__()
@@ -55,6 +90,17 @@ class ConvBnLReLU(nn.Module):
 ##################################
 
 class UpConvBnReLU(nn.Module):
+    '''
+    ConvTranspose2d + InstanceNorm2d (replaced BatchNorm2d) + ReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1):
