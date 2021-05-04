@@ -10,6 +10,13 @@ def rgb2binary(img):
     return (img[..., :] > 150).astype(float)
 
 class MapAugmentator():
+    '''
+    Map Augmentator
+
+    Args:
+        - None -
+        
+    '''
     def __init__(self,):
         pass
         
@@ -21,7 +28,22 @@ class MapAugmentator():
                        n_maps=10,
                        load_dir='data/dataset/init_maps',
                        save_dir='data/dataset/maps'):
-        
+        '''
+        Setting parameters of augmentation
+
+        Parameters:
+            height_shift (default: int=2): Range of vertical shift 
+            width_shift (default: int=2): Range of horizontal shift
+            shift_step (default: int=2): Step of shift
+            rot_prob (default: float=0.5): Probability of map to be rotated
+            n_maps (default: int=10): Number of map which will be obtained for each augmentation map
+            load_dir (default: str=data/dataset/init_maps): Path where initial augmentation maps are located 
+            save_dir (default: str=data/dataset/maps): Path where generated (augmneted) maps will be saved
+            
+        Returns:
+            - None -
+
+        '''
         self.h_shift = height_shift
         self.w_shift = width_shift
         self.h_range = np.arange(- height_shift, height_shift, shift_step)
@@ -33,6 +55,16 @@ class MapAugmentator():
         self.save_dir = save_dir
         
     def augment(self, map_name):
+        '''
+        Running augmentation
+
+        Parameters:
+            map_name (str): Name of map  
+            
+        Returns:
+            True (if augmentation finished)
+
+        '''
         self.map_name = map_name.split('.')[0]
         map_img = Image.open(f'{self.load_dir}/{map_name}')
         map_data = rgb2binary(np.array(map_img))[..., 0]
@@ -61,6 +93,16 @@ class MapAugmentator():
         return True
     
     def save(self,):
+        '''
+        Saving augmented maps
+
+        Parameters:
+            - None - 
+            
+        Returns:
+            - None -
+
+        '''
         if not os.path.exists(f'{self.save_dir}'):
             os.mkdir(f'{self.save_dir}')
         for i, aug_map in enumerate(self.aug_maps):
@@ -70,6 +112,13 @@ class MapAugmentator():
         
     
 class TaskGenerator():
+    '''
+    Tasks generator
+
+    Args:
+        - None -
+        
+    '''
     def __init__(self,):
         pass
         
@@ -78,6 +127,19 @@ class TaskGenerator():
                        n_tasks=100,
                        load_dir='data/dataset/maps',
                        save_dir='data/dataset/tasks'):
+        '''
+        Setting parameters of task generation
+
+        Parameters:
+            min_length (default: float=30): Minimal length between start and goal points 
+            n_tasks (default: int=100): Number of tasks which will be obtained for each map
+            load_dir (default: str=data/dataset/maps): Path where maps are located 
+            save_dir (default: str=data/dataset/tasks): Path where generated tasks will be saved
+            
+        Returns:
+            - None -
+
+        '''
         
         self.min_length = min_length
         self.n_tasks = n_tasks
@@ -85,9 +147,23 @@ class TaskGenerator():
         self.save_dir = save_dir
         
     def euclid(self, i1, j1, i2, j2):
+        '''
+        Function to calculate Euclidian distance
+
+        '''
         return math.sqrt((i1 - i2)**2 + (j1 - j2)**2)
         
     def generate(self, map_name):
+        '''
+        Running generation
+
+        Parameters:
+            map_name (str): Name of map  
+            
+        Returns:
+            True (if augmentation finished)
+
+        '''
         self.map_name = map_name.split('.')[0]
         map_img = Image.open(f'{self.load_dir}/{map_name}')
         map_data = rgb2binary(np.array(map_img))[..., 0]
@@ -126,6 +202,16 @@ class TaskGenerator():
         return True
     
     def save(self,):
+        '''
+        Saving generated tasks
+
+        Parameters:
+            - None - 
+            
+        Returns:
+            - None -
+
+        '''
         if not os.path.exists(f'{self.save_dir}'):
             os.mkdir(f'{self.save_dir}')
         csv_file = pd.DataFrame.from_dict(self.tasks_data)
@@ -139,6 +225,13 @@ class TaskGenerator():
         return True
     
 class ROIGenerator():
+    '''
+    ROI generator
+
+    Args:
+        - None -
+        
+    '''
     def __init__(self,):
         pass
     
@@ -148,6 +241,21 @@ class ROIGenerator():
                        map_dir = 'data/dataset/maps',
                        task_dir = 'data/dataset/tasks',
                        save_dir = 'data/dataset/tasks'):
+        '''
+        Setting parameters of ROI generation
+
+        Parameters:
+            algorithm (default: None): Object of sampling-based pathfinding algorithm  
+            n_runs (default: int=50): Number of times pathfinding algorithm will be running on each task
+            
+            map_dir (default: str=data/dataset/maps): Path where maps are located 
+            task_dir (default: str=data/dataset/tasks): Path where tasks are located
+            save_dir (default: str=data/dataset/tasks): Path where generated ROIs will be saved
+            
+        Returns:
+            - None -
+
+        '''
         self.algorithm = algorithm
         self.n_runs = n_runs
         self.map_dir = map_dir
@@ -155,6 +263,16 @@ class ROIGenerator():
         self.save_dir = save_dir
         
     def generate(self, map_name):
+        '''
+        Running ROI generation
+
+        Parameters:
+            map_name (str): Name of map  
+            
+        Returns:
+            True (if augmentation finished)
+
+        '''
         self.map_name = map_name.split('.')[0]
         if not os.path.exists(f'{self.save_dir}'):
             os.mkdir(f'{self.save_dir}')
