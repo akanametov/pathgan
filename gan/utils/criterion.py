@@ -5,6 +5,13 @@ import torch.nn as nn
 ############## Dice Loss ######################
 ###############################################
 class DiceLoss(nn.Module):
+    '''
+    DICE loss function
+
+    Args:
+        alpha (default: int=10): Coefficient in exp of sigmoid function  
+        smooth (default: int=1): To prevent zero in nominator
+    '''
     def __init__(self, alpha=10, smooth=1):
         super().__init__()
         self.alpha=alpha
@@ -26,6 +33,13 @@ class DiceLoss(nn.Module):
 ############## IoU Loss ######################
 ###############################################
 class IoUnionLoss(nn.Module):
+    '''
+    Intersection over Union loss function
+
+    Args:
+        alpha (default: int=10): Coefficient in exp of sigmoid function  
+        smooth (default: int=1): To prevent zero in nominator
+    '''
     def __init__(self, alpha=10, smooth=1):
         super().__init__()
         self.alpha=alpha
@@ -44,6 +58,12 @@ class IoUnionLoss(nn.Module):
         return loss
 
 class PixelwiseLossMSE(nn.Module):
+    '''
+    MSE loss function
+
+    Args:
+        alpha (default: int=20): Coefficient by which loss will be multiplied
+    '''
     def __init__(self, alpha=20):
         super().__init__()
         self.alpha=alpha
@@ -52,6 +72,12 @@ class PixelwiseLossMSE(nn.Module):
         return self.alpha* torch.mean((fake - real)**2)
     
 class PixelwiseLossL1(nn.Module):
+    '''
+    L1 loss function
+
+    Args:
+        alpha (default: int=1): Coefficient by which loss will be multiplied
+    '''
     def __init__(self, alpha=1):
         super().__init__()
         self.alpha=alpha
@@ -61,6 +87,12 @@ class PixelwiseLossL1(nn.Module):
         return self.alpha* self.criterion(fake, real)
     
 class DiscriminatorLoss(nn.Module):
+    '''
+    Discriminator (BCE) loss function
+
+    Args:
+        - None -
+    '''
     def __init__(self,):
         super().__init__()
         self.adv_criterion=nn.BCEWithLogitsLoss()
@@ -74,6 +106,13 @@ class DiscriminatorLoss(nn.Module):
         return loss
     
 class GeneratorLoss(nn.Module):
+    '''
+    Generator (BCE) loss function
+
+    Args:
+        alpha (default: int=1): Coefficient by which map loss will be multiplied
+        beta (default: int=1): Coefficient by which point loss will be multiplied
+    '''
     def __init__(self, alpha=1, beta=1):
         super().__init__()
         self.adv_criterion=nn.BCEWithLogitsLoss()
@@ -91,6 +130,12 @@ class GeneratorLoss(nn.Module):
         return loss
     
 class AdaptiveGeneratorLoss(nn.Module):
+    '''
+    Adaptive Generator (BCE) loss function (depends on losses of Discriminators)
+
+    Args:
+        alpha (default: int=3): Coefficient for map and point losses
+    '''
     def __init__(self, alpha=3):
         super().__init__()
         self.adv_criterion=nn.BCEWithLogitsLoss()
