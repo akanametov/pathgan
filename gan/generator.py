@@ -4,16 +4,26 @@ from .modules import ConvReLU, ConvTanh, ConvBnReLU, ConvBnReLU
 from .modules import ResidualStage, ConvResidualStage, UpConvResidualStage
 
 class Generator(nn.Module):
+    '''
+    The ROI Generator
+
+    Args:
+        map_channels (default: int=3): Number of Map input channels 
+        point_channels (default: int=3): Number of Point input channels 
+        noise_channels (default: int=1): Number of Noise input channels
+        hid_channels (default: int=64): Number of hidden channels
+        out_channels (default: int=3): Number of output (ROI) channels
+    '''
     def __init__(self,
-                 p_channels=3,
-                 m_channels=3,
-                 n_channels=1,
+                 map_channels=3,
+                 point_channels=3,
+                 noise_channels=1,
                  hid_channels=64,
                  out_channels=3):
         super().__init__()
-        self.InputPoint=ConvReLU(p_channels, hid_channels//4, kernel_size=3, stride=1)
-        self.InputMap=ConvReLU(m_channels, hid_channels//4, kernel_size=3, stride=1)
-        self.InputNoise=ConvReLU(n_channels, hid_channels//2, kernel_size=3, stride=1)
+        self.InputMap=ConvReLU(map_channels, hid_channels//4, kernel_size=3, stride=1)
+        self.InputPoint=ConvReLU(point_channels, hid_channels//4, kernel_size=3, stride=1)
+        self.InputNoise=ConvReLU(noise_channels, hid_channels//2, kernel_size=3, stride=1)
         
         self.DownBlock0 = ResidualStage(hid_channels)
         
@@ -29,13 +39,13 @@ class Generator(nn.Module):
         
         self.Output=ConvTanh(hid_channels//2, out_channels, kernel_size=1, stride=1, padding=0)
         
-    def forward(self, points, maps, noises):
-        p = self.InputPoint(points)
+    def forward(self, maps, points, noises):
         m = self.InputMap(maps)
+        p = self.InputPoint(points)
         n = self.InputNoise(noises)
-        npm = torch.cat([n, p, m], dim=1)
+        mpn = torch.cat([m, p, n], dim=1)
         
-        d0 = self.DownBlock0(npm)
+        d0 = self.DownBlock0(mpn)
         d1 = self.DownBlock1(d0)
         d2 = self.DownBlock2(d1)
         d3 = self.DownBlock3(d2)
