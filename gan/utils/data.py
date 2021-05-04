@@ -7,6 +7,16 @@ import torch
 from torch.utils.data import Dataset
 
 class MapPointRegionDataset(Dataset):
+    '''
+    Torch Dataset for Map & Point & Region
+
+    Args:
+        map_dir (str): Path to the maps
+        point_dir (str): Path to the points
+        roi_dir (str): Path to the ROI's
+        csv_file (pd.DataFrame): Dataframe with map/task/roi pairs
+        transform (torchvision.transforms): Transforms for map/task/roi pairs
+    '''
     def __init__(self,
                  map_dir,
                  point_dir,
