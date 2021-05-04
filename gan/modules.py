@@ -7,6 +7,17 @@ import torch.nn.functional as F
 ##################################
     
 class ConvBn(nn.Module):
+    '''
+    Conv2d + BatchNorm2d
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=3): kernel_size of Conv2d
+        stride (default: int=1): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=3, stride=1, padding=1):
@@ -23,6 +34,17 @@ class ConvBn(nn.Module):
 ##################################
 
 class ConvReLU(nn.Module):
+    '''
+    Conv2d + ReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1):
@@ -39,6 +61,18 @@ class ConvReLU(nn.Module):
 ##################################
 
 class ConvLeakyReLU(nn.Module):
+    '''
+    Conv2d + LeakyReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        alpha (default: float=0.2): alpha of LeakyReLU
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1, alpha=0.2):
@@ -55,6 +89,18 @@ class ConvLeakyReLU(nn.Module):
 ##################################
 
 class ConvTanh(nn.Module):
+    '''
+    Conv2d + Tanh
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=7): kernel_size of Conv2d
+        stride (default: int=1): stride of Conv2d
+        padding (default: int=3): padding of Conv2d
+        padding_mode (default: str=reflect): padding_mode of Conv2d
+        
+    '''
     def __init__(self, in_channels, out_channels,
                        kernel_size=7, stride=1,
                        padding=3, padding_mode='reflect'):
@@ -73,6 +119,17 @@ class ConvTanh(nn.Module):
 ##################################
 
 class ConvBnReLU(nn.Module):
+    '''
+    Conv2d + BatchNorm2d + ReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1):
@@ -90,6 +147,18 @@ class ConvBnReLU(nn.Module):
 ##################################
 
 class ConvBnLeakyReLU(nn.Module):
+    '''
+    Conv2d + BatchNorm2d + LeakyReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        alpha (default: float=0.2): alpha of LeakyReLU
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1, alpha=0.2):
@@ -107,6 +176,17 @@ class ConvBnLeakyReLU(nn.Module):
 ##################################
 
 class ConvBnPReLU(nn.Module):
+    '''
+    Conv2d + BatchNorm2d + PReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=3, stride=1, padding=1):
@@ -124,6 +204,18 @@ class ConvBnPReLU(nn.Module):
 ##################################
     
 class ResidualBlock(nn.Module):
+    '''
+    Residual Block (consists of 2 blocks)
+        block1: Conv2d + BatchNorm2d + PReLU
+        block2: Conv2d + BatchNorm2d
+
+    Args:
+        in_channels: Number of input and output channels is the same
+        kernel_size (default: int=3): kernel_size of Conv2d's in block1 and block2
+        stride (default: int=1): stride of Conv2d's in block1 and block2
+        padding (default: int=1): padding of Conv2d's in block1 and block2
+        
+    '''
     def __init__(self, in_channels, kernel_size=3, stride=1, padding=1):
         super().__init__()
         self.block = nn.Sequential(
@@ -139,6 +231,17 @@ class ResidualBlock(nn.Module):
 ##################################
 
 class UpConvBnReLU(nn.Module):
+    '''
+    ConvTranspose2d + BatchNorm2d + ReLU
+
+    Args:
+        in_channels: Number of input channels
+        out_channels: Number of output channels
+        kernel_size (default: int=4): kernel_size of Conv2d
+        stride (default: int=2): stride of Conv2d
+        padding (default: int=1): padding of Conv2d
+        
+    '''
     def __init__(self,
                  in_channels, out_channels,
                  kernel_size=4, stride=2, padding=1):
@@ -156,6 +259,15 @@ class UpConvBnReLU(nn.Module):
 ##################################
     
 class ResidualStage(nn.Module):
+    '''
+    Residual Stage (consists of 2 Residual Blocks)
+        resblock0: Residual Block
+        resblock1: Residual Block
+
+    Args:
+        hid_channels: Number of input and output channels (is the same) for Residual Blocks
+        
+    '''
     def __init__(self, hid_channels=128,):
         super().__init__()
         self.resblock0 = ResidualBlock(hid_channels, kernel_size=3, stride=1, padding=1)
@@ -172,6 +284,19 @@ class ResidualStage(nn.Module):
 ##################################
     
 class ConvResidualStage(nn.Module):
+    '''
+    ConvBnReLU + Residual Stage (consists of 2 Residual Blocks)
+        convblock: ConvBnReLU
+        resblock0: Residual Block
+        resblock0: Residual Block
+
+    Args:
+        in_channels (default: int=64): Number of input channels for ConvBnReLU
+        hid_channels (default: int=128): Number of input and output channels (is the same) for Residual Blocks
+        kernel_size (default: int=4): kernel_size of Conv2d in ConvBnReLU
+        stride (default: int=2): stride of Conv2d in ConvBnReLU
+        
+    '''
     def __init__(self, in_channels=64, hid_channels=128, kernel_size=4, stride=2):
         super().__init__()
         self.convblock = ConvBnReLU(in_channels, hid_channels, kernel_size, stride)
@@ -190,6 +315,17 @@ class ConvResidualStage(nn.Module):
 ##################################
 
 class UpConvResidualStage(nn.Module):
+    '''
+    UpConvBnReLU + Residual Stage (consists of 2 Residual Blocks)
+        upconvblock: UpConvBnReLU
+        resblock0: Residual Block
+        resblock0: Residual Block
+
+    Args:
+        in_channels (default: int=64): Number of input channels for UpConvBnReLU
+        hid_channels (default: int=128): Number of input and output channels (is the same) for Residual Blocks
+        
+    '''
     def __init__(self, in_channels=64, hid_channels=128,):
         super().__init__()
         self.upconvblock = UpConvBnReLU(in_channels, hid_channels, kernel_size=4, stride=2)
@@ -208,6 +344,14 @@ class UpConvResidualStage(nn.Module):
 ##################################
     
 class SelfAttention(nn.Module):
+    '''
+    SelfAttention block
+
+    Args:
+        hid_channels: Number of input channels for COnv2d's
+        alpha (default: float=0): Parameter of how much attention will be added to the input
+        
+    '''
     def __init__(self, hid_channels, alpha=0):
         super().__init__()
         self.Q_conv = nn.Conv2d(hid_channels, hid_channels//8, kernel_size=1)
