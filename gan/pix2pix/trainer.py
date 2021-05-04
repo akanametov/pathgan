@@ -6,6 +6,21 @@ from progress.bar import IncrementalBar
 ######################################
             
 class Trainer():
+    '''
+    GAN Trainer
+
+    Args:
+        generator (nn.Module): Generator model of GAN
+        discriminator (nn.Module): Discriminator model of GAN
+        
+        g_criterion (nn.Module): Criterion for Generator
+        d_criterion (nn.Module): Criterion for Discriminator
+        
+        g_optimizer (optim.Optimizer): Optimizer for Generator
+        d_optimizer (optim.Optimizer): Optimizer for Discriminator
+        
+        device (torch.device): Device for models
+    '''
     def __init__(self,
                  generator, discriminator,
                  g_criterion, d_criterion,
@@ -18,7 +33,18 @@ class Trainer():
         self.g_optimizer = g_optimizer
         self.d_optimizer = d_optimizer
         
-    def fit(self, dataloader, epochs=200, device='cuda:0'):
+    def fit(self, dataloader, epochs=10, device='cuda:0'):
+        '''
+        Run Trainer
+
+        Parameters:
+            dataloader (data.Dataloader): Train dataloader
+            epochs (default: int=10): Number of epochs for train
+            device (torch.device): Device for data
+            
+        Returns:
+            data (dict): Dictionary with losses
+        '''
         g_losses=[]
         d_losses=[]
         
