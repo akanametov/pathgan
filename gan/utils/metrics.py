@@ -40,6 +40,12 @@ def frechet_distance(muA, sigmaA, muB, sigmaB):
     return fd
 
 class KLDivergence(nn.Module):
+    '''
+    Kullback–Leibler divergence
+
+    Args:
+        - None -
+    '''
     def __init__(self,):
         super().__init__()
         
@@ -47,6 +53,12 @@ class KLDivergence(nn.Module):
         return kl_divergence(px, py)
     
 class InceptionScore(nn.Module):
+    '''
+    Inception Score metrics
+
+    Args:
+        device (default: str=cpu): torch.device
+    '''
     def __init__(self, device='cpu'):
         super().__init__()
         encoder = self.__loadModel__()
@@ -85,6 +97,12 @@ class InceptionScore(nn.Module):
         return iscore
     
 class FrechetInceptionDistance(nn.Module):
+    '''
+    Frechet Inception Distance
+
+    Args:
+        device (default: str=cpu): torch.device
+    '''
     def __init__(self, device='cpu'):
         super().__init__()
         encoder = self.__loadModel__()
