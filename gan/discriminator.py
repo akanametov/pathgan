@@ -4,14 +4,23 @@ from .modules import ConvLeakyReLU, ConvBnLeakyReLU
 from .modules import SelfAttention
 
 class MapDiscriminator(nn.Module):
+    '''
+    The Map Discriminator
+
+    Args:
+        map_channels (default: int=3): Number of Map input channels 
+        roi_channels (default: int=3): Number of ROI input channels
+        hid_channels (default: int=64): Number of hidden channels
+        out_channels (default: int=1): Number of output channels
+    '''
     def __init__(self,
-                 m_channels=3,
-                 r_channels=3,
+                 map_channels=3,
+                 roi_channels=3,
                  hid_channels=64,
                  out_channels=1):
         super().__init__()
-        self.InputMap=ConvBnLeakyReLU(m_channels, hid_channels//2, kernel_size=4, stride=2, padding=1)
-        self.InputRegion=ConvLeakyReLU(r_channels, hid_channels//2, kernel_size=4, stride=2, padding=1)
+        self.InputMap=ConvBnLeakyReLU(map_channels, hid_channels//2, kernel_size=4, stride=2, padding=1)
+        self.InputRegion=ConvLeakyReLU(roi_channels, hid_channels//2, kernel_size=4, stride=2, padding=1)
         
         self.MapAttention=SelfAttention(hid_channels//2)
         self.RegionAttention=SelfAttention(hid_channels//2)
@@ -41,14 +50,23 @@ class MapDiscriminator(nn.Module):
         return out
     
 class PointDiscriminator(nn.Module):
+    '''
+    The Point Discriminator
+
+    Args:
+        point_channels (default: int=3): Number of Point input channels 
+        roi_channels (default: int=3): Number of ROI input channels
+        hid_channels (default: int=64): Number of hidden channels
+        out_channels (default: int=1): Number of output channels
+    '''
     def __init__(self,
-                 m_channels=3,
-                 r_channels=3,
+                 point_channels=3,
+                 roi_channels=3,
                  hid_channels=64,
                  out_channels=1):
         super().__init__()
-        self.InputPoint=ConvBnLeakyReLU(m_channels, 3*hid_channels//4, kernel_size=4, stride=2, padding=1)
-        self.InputRegion=ConvLeakyReLU(r_channels,  1*hid_channels//4, kernel_size=4, stride=2, padding=1)
+        self.InputPoint=ConvBnLeakyReLU(point_channels, 3*hid_channels//4, kernel_size=4, stride=2, padding=1)
+        self.InputRegion=ConvLeakyReLU(roi_channels,  1*hid_channels//4, kernel_size=4, stride=2, padding=1)
         
         self.PointAttention=SelfAttention(3*hid_channels//4)
         self.RegionAttention=SelfAttention(1*hid_channels//4)
