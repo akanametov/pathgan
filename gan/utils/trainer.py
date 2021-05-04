@@ -1,12 +1,26 @@
-from progress.bar import IncrementalBar
-
 import torch
-from torchvision.utils import make_grid
-from torchvision.transforms import ToPILImage
-
+from progress.bar import IncrementalBar
 from .criterion import PixelwiseLossMSE 
     
 class Trainer():
+    '''
+    GAN Trainer
+
+    Args:
+        generator (nn.Module): Generator model of GAN
+        map_discriminator (nn.Module): Map Discriminator model of GAN
+        point_discriminator (nn.Module): Point Discriminator model of GAN
+        
+        g_criterion (nn.Module): Criterion for Generator
+        md_criterion (nn.Module): Criterion for Map Discriminator
+        pd_criterion (nn.Module): Criterion for Point Discriminator
+        
+        g_optimizer (optim.Optimizer): Optimizer for Generator
+        md_optimizer (optim.Optimizer): Optimizer for Map Discriminator
+        pd_optimizer (optim.Optimizer): Optimizer for Point Discriminator
+        
+        device (torch.device): Device for models
+    '''
     def __init__(self,
                  generator,
                  map_discriminator,
@@ -30,7 +44,18 @@ class Trainer():
         self.pd_optimizer = pd_optimizer
         self.pix_loss = PixelwiseLossMSE()
         
-    def fit(self, dataloader, epochs=500, device='cuda:0'):
+    def fit(self, dataloader, epochs=10, device='cuda:0'):
+        '''
+        Run Trainer
+
+        Parameters:
+            dataloader (data.Dataloader): Train dataloader
+            epochs (default: int=10): Number of epochs for train
+            device (torch.device): Device for data
+            
+        Returns:
+            data (dict): Dictionary with losses
+        '''
         g_losses=[]
         md_losses=[]
         pd_losses=[]
