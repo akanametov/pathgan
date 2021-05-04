@@ -1,4 +1,5 @@
 from rtree import index
+import random
 import numpy as np
 from operator import itemgetter
 from pathlib import Path
@@ -11,6 +12,10 @@ import matplotlib.animation as animation
 from PIL import Image, ImageDraw
 warnings.filterwarnings('ignore')
 
+seed = 42
+random.seed(seed)
+np.random.seed(seed)
+
 init_color = np.array([0, 0, 1])
 goal_color = np.array([1, 0, 0])
 roi_color = np.array([0, 1, 0])
@@ -20,12 +25,22 @@ paths_history = []
 def rgb2binary(img):
     return (img[..., :] > 150).astype(float)
 
-load_dir = 'data/dataset'
-map_dir = 'maps/map_99.png'
-task = 'tasks/map_99.csv'
+with open('../data/results/results.csv') as f:
+    f.readline()
+    for _ in range(6):
+        next(f)
+    true_roi, pred_roi = f.readline().rstrip().split(',')[:2]
+    
+    pred_roi_path = Path('../data')/pred_roi
+    grid_map_name, task_name = true_roi.split('/')[-2:]
+    task_num = int(task_name.split('_')[1])
+
+load_dir = '../data/dataset'
+map_dir = 'maps/{}.png'.format(grid_map_name)
+task = 'tasks/{}.csv'.format(grid_map_name)
 
 with open(Path(load_dir)/task) as f:
-    for _ in range(4):
+    for _ in range(task_num + 1):
         next(f)
     task = f.readline().rstrip().split(',')
     euclid = float(task[-1])
@@ -36,6 +51,10 @@ with open(Path(load_dir)/task) as f:
 
 map_img = Image.open(f'{load_dir}/{map_dir}').convert('RGB')
 map_data = rgb2binary(np.array(map_img))
+roi_img = Image.open(pred_roi_path).convert('RGB')
+roi_data = rgb2binary(np.array(roi_img))
+
+roi = list(zip(*np.where(roi_data == roi_color)[:-1]))
 
 
 def draw_edge(xy_init, xy_goal, map_data, color=roi_color):
@@ -82,9 +101,8 @@ class RRTStar(object):
         
         
     def add_node(self, xy, idx=0):
-        if self.V.count(xy) == 0:
-            self.V.insert(idx, xy + xy, xy)
-            self.samples_taken += 1
+        self.V.insert(idx, xy + xy, xy)
+        self.samples_taken += 1
         
     
     def add_edge(self, parent_xy, child_xy):
@@ -98,21 +116,19 @@ class RRTStar(object):
         if max_iter is not None:
             self.max_iter = max_iter
             
-        self.V.insert(0, xy_init + xy_init, xy_init)
+        self.add_node(xy_init)
         self.add_edge(None, xy_init)
         
         for t in range(self.max_iter):
             xy_rand = self.sample_free(grid_map, roi)
             xy_near = next(self.nearest(xy_rand, n=1))
             xy_new = self.steer(xy_near, xy_rand, self.step_len, xy_max)
-            
-            # not self.V.count(xy_new) == 0 - use or not
-            if not self.is_cell_free(xy_new, grid_map):
+            if not self.V.count(xy_new) == 0 or not self.is_cell_free(xy_new, grid_map):
                 continue
             
-            if self.V.count(xy_new) == 0:
-                self.samples_taken += 1
+            self.samples_taken += 1
 
+            #print(xy_rand, xy_near, xy_new)
             costs_near = self.choose_parent(xy_init, xy_near, xy_new, xy_goal, grid_map)
             if xy_new in self.E:
                 self.rewire(xy_new, costs_near, grid_map)
@@ -128,7 +144,7 @@ class RRTStar(object):
             
     def sample_free(self, grid_map=None, roi=None):
         if roi is not None and np.random.random() > self.mu:
-            return self.non_uniform_sample(roi)
+            return self.non_uniform_sample(roi, grid_map)
         return self.uniform_sample(grid_map)
     
     
@@ -150,8 +166,12 @@ class RRTStar(object):
         return sum(grid_map[x, y]) != 0
     
     
-    def non_uniform_sample(self, roi):
-        pass
+    def non_uniform_sample(self, roi, grid_map):
+        while True:
+            idx = np.random.choice(len(roi))
+            xy = roi[idx]
+            if self.is_cell_free(xy, grid_map):
+                return xy
     
     
     def nearest(self, xy, n=1):
@@ -175,7 +195,6 @@ class RRTStar(object):
             u = xy / d
         except:
             u = xy / (d + 1e-9)
-        step = min(step, d)
         steered_point = np.array(xy1) + u * step
         bounded = self.set_bounds(tuple(steered_point), xy_max)
         return bounded
@@ -238,7 +257,7 @@ class RRTStar(object):
             
     
     def can_connect(self, xy_near, xy_new, grid_map):
-        if self.obstacle_free(xy_near, xy_new, grid_map):
+        if self.V.count(xy_new) == 0 and self.obstacle_free(xy_near, xy_new, grid_map):
             self.add_node(xy_new)
             self.add_edge(xy_near, xy_new)
             draw_edge(xy_near, xy_new, grid_map)
@@ -298,10 +317,15 @@ class RRTStar(object):
         return False, None
 
 
+print(grid_map_name, task_num, pred_roi)
+map_data[iinit, jinit] = init_color
+map_data[igoal, jgoal] = goal_color
+
 rrt_star = RRTStar(path_resolution=1, gamma=10, step_len=4, max_iter=10000, mu=0.1, index_dim=2)
 rrt_star.search(map_data, xy_init, xy_goal)
 print('Samples taken {}'.format(rrt_star.samples_taken))
 print('Euclidean distance {:.4f}, best cost {:.4f} (reached in #{} iterations)'.format(euclid, rrt_star.best_cost, rrt_star.it_to_best))
+print(grid_map_name, task_num, pred_roi)
 
 draw_best_path(rrt_star.best_path, map_data)
 map_data[iinit, jinit] = init_color
