@@ -119,6 +119,23 @@ of `Generator`
 
 ## Results on `MovingAI` maps
 
+
+| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | # of params * | Checkpoint * |
+| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:|:------------:|
+| Original (from paper)|[Link](https://disk.yandex.ru/d/qIws1FoEWAvVqA)| 38.4% | 53.8% | 88.1 | 1.014 | 21,231,827 | [Link](https://disk.yandex.ru/d/4hQqaZPNoktXag) | 
+| Pix2Pix (ours)|[Link](https://disk.yandex.ru/d/HgmkUZEzDeIvrQ)| 30.8% | 46.3% | 100.1 | 1.012 | 4,170,477 | [Link](https://disk.yandex.ru/d/Lzbj46Y7caTJSA) |
+
+*- 
+of `Generator`
+
+- mIoU - `average Intersection over Union` for all 2,000 samples in `test set`
+
+- mDICE -`average DICE` for all 2,000 samples in `test set`
+
+- mFID -`average Frechet Inception Distance` for all 2,000 samples in `test set`
+
+- mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`
+
 `Original Generator (from paper)`
 <a><div title="Original (from paper)">
     <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
