@@ -124,6 +124,9 @@ This project is licensed under MIT.
 ## Links
 
 * [Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)
-* [Dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+* [Dataset (generated)](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
+* [MovingAI Dataset](https://disk.yandex.ru/d/0QJSjzVy_ay0mw)
 * [Results (ROI's) of Original Generator (from paper)](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)
 * [Results (ROI's) of Pix2Pix Generator (ours)](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)
+* [MovingAI results (ROI's) of Original Generator (from paper)](https://disk.yandex.ru/d/qIws1FoEWAvVqA)
+* [MovingAI results (ROI's) of Pix2Pix Generator (ours)](https://disk.yandex.ru/d/HgmkUZEzDeIvrQ)
