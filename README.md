@@ -117,6 +117,22 @@ of `Generator`
 
 **RRT result`-->` True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
+## Results on `MovingAI` maps
+
+`Original Generator (from paper)`
+<a><div title="Original (from paper)">
+    <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
+</div></a>
+
+**True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
+`Pix2Pix Generator (ours)`
+<a><div title="Pix2Pix (ours)">
+    <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
+</div></a>
+
+**True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
+
 ## License
 
 This project is licensed under MIT.
