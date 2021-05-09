@@ -93,22 +93,22 @@ In this project we provide generated dataset of 10,000 samples (`Map`, `Point`, 
 In the case if you wish to create your own dataset we also provide some `python` scripts.
 Before to create a dataset make sure that you have some initial maps saved as `.png` files.
 The dataset can be generated in 4 steps:
-    * Change directory
-      ```
-      cd data/
-      ```
-    * Augment initial maps (not required, in the case you have not enough maps)
-      ```
-      ./pathgan/data> python map_augmentator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--height_shift HEIGHT_SHIFT] [--width_shift WIDTH_SHIFT] [--shift_step SHIFT_STEP] [--rot_prob ROT_PROB] [--n_maps N_MAPS]
-      ```
-    * Generate tasks
-      ```
-      ./pathgan/data> python task_generator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--min_length MIN_LENGTH] [--n_tasks N_TASKS]
-      ```
-    * Generate ROIs
-      ```
-      ./pathgan/data> python roi_generator.py [--start START] [--to TO] [--map_dir MAP_DIR] [--task_dir TASK_DIR] [--save_dir SAVE_DIR] [--n_runs N_RUNS]
-      ```
+  * Change directory
+    ```
+    cd data/
+    ```
+  * Augment initial maps (not required, in the case you have not enough maps)
+    ```
+    ./pathgan/data> python map_augmentator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--height_shift HEIGHT_SHIFT] [--width_shift WIDTH_SHIFT] [--shift_step SHIFT_STEP] [--rot_prob ROT_PROB] [--n_maps N_MAPS]
+    ```
+  * Generate tasks
+    ```
+    ./pathgan/data> python task_generator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--min_length MIN_LENGTH] [--n_tasks N_TASKS]
+    ```
+  * Generate ROIs
+    ```
+    ./pathgan/data> python roi_generator.py [--start START] [--to TO] [--map_dir MAP_DIR] [--task_dir TASK_DIR] [--save_dir SAVE_DIR] [--n_runs N_RUNS]
+    ```
 
 *for more information on dataset creation refer to [DATASET.md](DATASET.md)*
 
