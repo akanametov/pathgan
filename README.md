@@ -79,6 +79,7 @@ The overall structure of the PathGAN consists of two things:
 ### Dataset
 
 * Generated dataset
+* 
 In this project we provide generated dataset of 10,000 samples (`Map`, `Point`, `ROI`):**
 - train set (8,000 samples)
 - test set (2,000 samples)
@@ -88,6 +89,7 @@ In this project we provide generated dataset of 10,000 samples (`Map`, `Point`, 
 
 *download dataset through the [link](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)*
 * Generating dataset
+
 In the case if you wish to create your own dataset we also provide some `python` scripts.
 Before to create a dataset make sure that you have some initial maps saved as `.png` files.
 The dataset can be generated in 4 steps:
