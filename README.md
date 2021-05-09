@@ -109,7 +109,7 @@ The dataset can be generated in 4 steps:
     ./pathgan/data> python roi_generator.py [--start START] [--to TO] [--map_dir MAP_DIR] [--task_dir TASK_DIR] [--save_dir SAVE_DIR] [--n_runs N_RUNS]
     ```
 
-*for more information on dataset creation refer to [DATASET.md](DATASET.md)*
+*for more information on parameters of dataset creation refer to [DATASET.md](DATASET.md)*
 
 ### Training
 
@@ -132,7 +132,7 @@ In order to finetune pretrained Generator download weights through the links bel
 *- 
 of Generator
 
-*for more information on GANs training refer to [TRAINING.md](TRAINING.md)*
+*for more information on parameters of GANs training refer to [TRAINING.md](TRAINING.md)*
 
 ### Results
 
