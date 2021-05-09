@@ -33,7 +33,7 @@ if __name__ == '__main__':
                         help='Load directory to continue training (default: "None")')
     
     parser.add_argument('--save_dir', default=None,
-                        help='Save directory (default: "None")')
+                        help='Save directory (default: "gan/checkpoint/pixgenerator.pth")')
     
     args = parser.parse_args()
 
