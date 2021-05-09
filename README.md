@@ -144,10 +144,10 @@ of Generator
     <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
   </div></a>
 
-  | GAN                  |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params * |
+  | GAN                  |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params *  |
   | -------------------- |:-------------:|:-----------:|:----------:|:---------:|:----------------:|
-  | Original (from paper)|     70.2%     |    82.0%    |    79.7    |    1.019  |     21,231,827   |
-  | Pix2Pix (ours)       |     58.1%     |    72.2%    |    91.2    |    1.017  |      4,170,477   |
+  | Original (from paper)|   **70.2%**   |  **82.0%**  |  **79.7**  |  **1.019**|     21,231,827   |
+  | Pix2Pix (ours)       |     58.1%     |    72.2%    |    91.2    |    1.017  |    **4,170,477** |
 
   *- 
   of Generator
@@ -166,10 +166,10 @@ of Generator
     <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
   </div></a>
 
-  | GAN                  |      mIoU     |    mDICE    |    mFID    |    mIS    |
-  | -------------------- |:-------------:|:-----------:|:----------:|:---------:|
-  | Original (from paper)|      38.4%    |    53.8%    |     88.1   |   1.014   | 
-  | Pix2Pix (ours)       |      30.8%    |    46.3%    |    100.1   |   1.012   |
+  | GAN                      |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params *  |
+  | ------------------------ |:-------------:|:-----------:|:----------:|:---------:|:----------------:|
+  | **Original (from paper)**|    **38.4%**  |  **53.8%**  |   **88.1** | **1.014** |     21,231,827   |
+  | Pix2Pix (ours)           |      30.8%    |    46.3%    |    100.1   |   1.012   |    **4,170,477** |
 
   *- 
   of `Generator`
@@ -186,8 +186,8 @@ of Generator
 
 | GAN                   |    Generated   |    MovingAI    |
 | --------------------- |:--------------:|:--------------:|
-| Original (from paper) |      65.8%     |      54.5%     |
-| Pix2Pix (ours)        |      65.4%     |      67.4%     |
+| Original (from paper) |    **65.8%**   |      54.5%     |
+| **Pix2Pix (ours)**    |      65.4%     |    **67.4%**   |
 
 
 ### License
