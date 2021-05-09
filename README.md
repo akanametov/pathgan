@@ -72,7 +72,7 @@ The overall structure of the PathGAN consists of two things:
 <a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
 
 
-**Path searching by `RRT*`**
+Path searching by RRT*
 
 <img src="assets/test_anim.gif" width="300" height="300">
 
@@ -97,7 +97,7 @@ The dataset can be generated in 4 steps:
     ```
     cd data/
     ```
-  * Augment initial maps (not required, in the case you have not enough maps)
+  * Augment initial maps (not required, just in the case you have not enough maps)
     ```
     ./pathgan/data> python map_augmentator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--height_shift HEIGHT_SHIFT] [--width_shift WIDTH_SHIFT] [--shift_step SHIFT_STEP] [--rot_prob ROT_PROB] [--n_maps N_MAPS]
     ```
@@ -135,7 +135,7 @@ of Generator
 
 *for more information on GANs training refer to [TRAINING.md](TRAINING.md)*
 
-## Results
+### Results
 
 | GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    | # of params * |
 | ------------- |:-------------:|:-----------:|:----------:|:---------:|:------------------:|
@@ -200,11 +200,11 @@ of `Generator`
 
 **True ROI `-->` Pred ROI `-->`True ROI ∩ Pred ROI**
 
-## License
+### License
 
 This project is licensed under MIT.
 
-## Links
+### Links
 
 * [Generative Adversarial Network based Heuristics for Sampling-based Path Planning (arXiv article)](https://arxiv.org/pdf/2012.03490.pdf)
 * [Dataset (generated)](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)
