@@ -139,9 +139,9 @@ of Generator
 
 **GAN results**
 * Original vs Pix2Pix on Generated dataset
-  <a><div title="Original (from paper)">
-    <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="500px"/>
-    <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
+  <a><div class='column'>
+      <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="500px"/>
+      <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
   </div></a>
 
   | GAN                  |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params *  |
@@ -161,9 +161,9 @@ of Generator
   - mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`
 
 * Original vs Pix2Pix on MovingAI dataset
-  <a><div title="Original (from paper)">
-    <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
-    <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
+  <a><div class='column'>
+      <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
+      <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
   </div></a>
 
   | GAN                      |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params *  |
