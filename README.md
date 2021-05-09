@@ -89,28 +89,41 @@ The overall structure of the PathGAN consists of two things:
 
 **[Link to the dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
 
+
+*for more information on dataset creation refer to [DATASET.md](DATASET.md)*
+
 ### Training
 
 * Original GAN training
   ```
-  
+  ./pathgan> python train.py [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--g_lr G_LR] [--md_lr MD_LR] [--pd_lr PD_LR] [--load_dir LOAD_DIR] [--save_dir SAVE_DIR]
   ```
 * Pix2Pix GAN training
+  ```
+  ./pathgan> python train_pix2pix.py [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--g_lr G_LR] [--d_lr D_LR] [--load_dir LOAD_DIR] [--save_dir SAVE_DIR]
+  ```
+
+In order to finetune pretrained Generator download weights through the links below:
 
 | GAN           | # of params * | Checkpoint * |
 | ------------- |:--------------:|:------------:|
 | Original (from paper)| 21,231,827 | [Link](https://disk.yandex.ru/d/4hQqaZPNoktXag) | 
 | Pix2Pix (ours)| 4,170,477 | [Link](https://disk.yandex.ru/d/Lzbj46Y7caTJSA) |
 
+*- 
+of Generator
+
+*for more information on GANs training refer to [TRAINING.md](TRAINING.md)*
+
 ## Results
 
-| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | # of params * | Checkpoint * |
-| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:|:------------:|
-| Original (from paper)|[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)| 70.2% | 82.0% | 79.7 | 1.019 | 21,231,827 | [Link](https://disk.yandex.ru/d/4hQqaZPNoktXag) | 
-| Pix2Pix (ours)|[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)| 58.1% | 72.2% | 91.2 | 1.017 | 4,170,477 | [Link](https://disk.yandex.ru/d/Lzbj46Y7caTJSA) |
+| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | # of params * |
+| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:|
+| Original (from paper)|[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)| 70.2% | 82.0% | 79.7 | 1.019 | 21,231,827 |
+| Pix2Pix (ours)|[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)| 58.1% | 72.2% | 91.2 | 1.017 | 4,170,477 |
 
 *- 
-of `Generator`
+of Generator
 
 - mIoU - `average Intersection over Union` for all 2,000 samples in `test set`
 
