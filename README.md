@@ -78,17 +78,35 @@ The overall structure of the PathGAN consists of two things:
 
 ### Dataset
 
-**Dataset consists of 10,000 samples (`Map`, `Point`, `ROI`):**
-
+* Generated dataset
+In this project we provide generated dataset of 10,000 samples (`Map`, `Point`, `ROI`):**
+- train set (8,000 samples)
+- test set (2,000 samples)
 <a><div class="column">
     <img title="Map, Point, ROI" alt="Alt text" src="assets/dataset.png" align="center" height="150px" width="500px"/>
 </div></a>
 
-- train set (8,000 samples)
-- test set (2,000 samples)
-
-**[Link to the dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
-
+*download dataset through the [link](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)*
+* Generating dataset
+In the case if you wish to create your own dataset we also provide some `python` scripts.
+Before to create a dataset make sure that you have some initial maps saved as `.png` files.
+The dataset can be generated in 4 steps:
+    * Change directory
+      ```
+      cd data/
+      ```
+    * Augment initial maps (not required, in the case you have not enough maps)
+      ```
+      ./pathgan/data> python map_augmentator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--height_shift HEIGHT_SHIFT] [--width_shift WIDTH_SHIFT] [--shift_step SHIFT_STEP] [--rot_prob ROT_PROB] [--n_maps N_MAPS]
+      ```
+    * Generate tasks
+      ```
+      ./pathgan/data> python task_generator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--min_length MIN_LENGTH] [--n_tasks N_TASKS]
+      ```
+    * Generate ROIs
+      ```
+      ./pathgan/data> python roi_generator.py [--start START] [--to TO] [--map_dir MAP_DIR] [--task_dir TASK_DIR] [--save_dir SAVE_DIR] [--n_runs N_RUNS]
+      ```
 
 *for more information on dataset creation refer to [DATASET.md](DATASET.md)*
 
@@ -117,10 +135,10 @@ of Generator
 
 ## Results
 
-| GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    | # of params * |
-| ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|:------------------:|
-| Original (from paper)|[Link](https://disk.yandex.ru/d/mEv-kuVkGcV40Q)| 70.2% | 82.0% | 79.7 | 1.019 | 21,231,827 |
-| Pix2Pix (ours)|[Link](https://disk.yandex.ru/d/IqwqTjVoTkwMZw)| 58.1% | 72.2% | 91.2 | 1.017 | 4,170,477 |
+| GAN           |      mIoU     |    mDICE    |    mFID    |    mIS    | # of params * |
+| ------------- |:-------------:|:-----------:|:----------:|:---------:|:------------------:|
+| Original (from paper)| 70.2% | 82.0% | 79.7 | 1.019 | 21,231,827 |
+| Pix2Pix (ours)| 58.1% | 72.2% | 91.2 | 1.017 | 4,170,477 |
 
 *- 
 of Generator
