@@ -38,11 +38,19 @@ A Pytorch implementation of [**Generative Adversarial Network for Heuristics of 
     ├── LICENSE
     └── README.md
 ```
-
+### Install
+* Clone repo
+  ```
+  git clone https://github.com/akanametov/pathgan
+  ```
+* Change directory
+  ```
+  cd pathgan/
+  ```
+  
 ## Content
 
 - [Introduction](#introduction)
-- [Install](#install)
 - [Dataset](#dataset)
 - [Training](#training)
 - [Results](#results)
@@ -67,17 +75,6 @@ The overall structure of the PathGAN consists of two things:
 **Path searching by `RRT*`**
 
 <img src="assets/test_anim.gif" width="300" height="300">
-
-### Install
-* Clone repo
-  ```
-  git clone https://github.com/akanametov/pathgan
-  ```
-* Change directory
-  ```
-  cd pathgan/
-  ```
-
 
 ### Dataset
 
