@@ -166,10 +166,10 @@ of Generator
     <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
   </div></a>
 
-  | GAN           | Generated ROI's |      mIoU     |    mDICE    |    mFID    |    mIS    |
-  | ------------- |:--------------:|:-------------:|:-----------:|:----------:|:---------:|
-  | Original (from paper)|[Link](https://disk.yandex.ru/d/qIws1FoEWAvVqA)| 38.4% | 53.8% | 88.1 | 1.014 | 
-  | Pix2Pix (ours)|[Link](https://disk.yandex.ru/d/HgmkUZEzDeIvrQ)| 30.8% | 46.3% | 100.1 | 1.012 |
+  | GAN                  |      mIoU     |    mDICE    |    mFID    |    mIS    |
+  | -------------------- |:-------------:|:-----------:|:----------:|:---------:|
+  | Original (from paper)|      38.4%    |    53.8%    |     88.1   |   1.014   | 
+  | Pix2Pix (ours)       |      30.8%    |    46.3%    |    100.1   |   1.012   |
 
   *- 
   of `Generator`
