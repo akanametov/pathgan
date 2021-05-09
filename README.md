@@ -6,7 +6,6 @@ A Pytorch implementation of [**Generative Adversarial Network for Heuristics of 
     .
     ├── assets                  # Images, results
     ├── data                    # Dataset location & data generation
-    │   ├── movingai
     │   ├── map_augmentator.py  
     │   ├── task_generator.py   
     │   ├── roi_generator.py 
