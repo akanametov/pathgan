@@ -138,7 +138,7 @@ of Generator
 ### Results
 
 **GAN results**
-* Original vs Pix2Pix on Generated dataset
+* **Original vs Pix2Pix on Generated dataset**
   <a><div class='column'>
       <img title="Original" alt="Alt text" src="assets/results.png" align="center" height="400px" width="500px"/>
       <img title="Pix2Pix" alt="Alt text" src="assets/pixresult.png" align="center" height="400px" width="500px"/>
@@ -160,7 +160,7 @@ of Generator
 
   - mIS - `average Inception Score` for all 250 batches (2,000 samples/8 samples per batch) in `test set`
 
-* Original vs Pix2Pix on MovingAI dataset
+* **Original vs Pix2Pix on MovingAI dataset**
   <a><div class='column'>
       <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
       <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
