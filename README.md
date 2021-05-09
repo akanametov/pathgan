@@ -79,7 +79,7 @@ The overall structure of the PathGAN consists of two things:
   ```
 
 
-## Dataset
+### Dataset
 
 **Dataset consists of 10,000 samples (`Map`, `Point`, `ROI`):**
 
@@ -91,6 +91,19 @@ The overall structure of the PathGAN consists of two things:
 - test set (2,000 samples)
 
 **[Link to the dataset](https://disk.yandex.ru/d/mgf5wtQrld0ygQ)**
+
+### Training
+
+* Original GAN training
+  ```
+  
+  ```
+* Pix2Pix GAN training
+
+| GAN           | # of params * | Checkpoint * |
+| ------------- |:--------------:|:------------:|
+| Original (from paper)| 21,231,827 | [Link](https://disk.yandex.ru/d/4hQqaZPNoktXag) | 
+| Pix2Pix (ours)| 4,170,477 | [Link](https://disk.yandex.ru/d/Lzbj46Y7caTJSA) |
 
 ## Results
 
