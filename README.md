@@ -1,8 +1,6 @@
 PathGAN
 ======================
-A Pytorch implementation of **Generative Adversarial Network for Heuristics of Sampling-based Path Planning**
-
-[Original arXiv paper](https://arxiv.org/pdf/2012.03490.pdf)
+A Pytorch implementation of [**Generative Adversarial Network for Heuristics of Sampling-based Path Planning**](https://arxiv.org/pdf/2012.03490.pdf)
 
 ```
     .
@@ -41,34 +39,45 @@ A Pytorch implementation of **Generative Adversarial Network for Heuristics of S
     └── README.md
 ```
 
-## Table of content
+## Content
 
 - [Introduction](#introduction)
-  - [Searching algorithm](#searching-algorithm)
-  - [GAN architecture](#gan-architecture)
+- [Install](#install)
 - [Dataset](#dataset)
+- [Training](#training)
 - [Results](#results)
 - [License](#license)
 - [Links](#links)
 
-
-## Introduction
+### Introduction
 
 The overall structure of the PathGAN consists of two things:
 1) RRT* searching algorithm and
 2) Generative Aversarial Network for promising region generation 
 
-### Searching algorithm
+* Pathfinding algorithm
 
 <a><img src="assets/gan_rrt.png" align="center" height="150px" width="350px"/></a>
+
+* GAN architecture
+
+<a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
+
 
 **Path searching by `RRT*`**
 
 <img src="assets/test_anim.gif" width="300" height="300">
 
-### GAN architecture
+### Install
+* Clone repo
+  ```
+  git clone https://github.com/akanametov/pathgan
+  ```
+* Change directory
+  ```
+  cd pathgan/
+  ```
 
-<a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
 
 ## Dataset
 
