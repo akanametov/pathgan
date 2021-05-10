@@ -27,13 +27,15 @@ A Pytorch implementation of [**Generative Adversarial Network for Heuristics of 
     |       ├── trainer.py
     |       └── utils.py
     ├── path                    # Scripts for pathfinding
-    │   ├── rrt.py              
-    │   ├── rrt_star.py         
-    │   ├── RRT_updated.py 
-    │   └── RRT_.py  
+    │   ├── rrt_base.py         # Abstract class with common functions for RRT and RRT*
+        |── rrt.py              
+    │   ├── rrt_star.py
+    │   └── utils.py            # Functions for statistics collection and processing
     ├── train.py                # To train GAN from the paper 
     ├── train_pix2pix.py        # To tran our Pix2Pix GAN 
     ├── roi_generation.ipynb    # To generate ROIs
+    |── get_logs.py             # Wrapper for logs generation and processing
+    |── app.py                  # Dash app to display plots via plotly
     ├── LICENSE
     └── README.md
 ```
@@ -71,9 +73,9 @@ The overall structure of the PathGAN consists of two things:
 <a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
 
 
-Path searching by RRT*
+Pathfinding example by RRT* with ROI heuristic
 
-<img src="assets/test_anim.gif" width="300" height="300">
+<img src="assets/rrt_star_roi_demo.png" width="300" height="300">
 
 ### Dataset
 
