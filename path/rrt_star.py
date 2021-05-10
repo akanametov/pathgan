@@ -7,6 +7,7 @@ from typing import Tuple, List, Optional, Iterator
 from operator import itemgetter
 
 from path.rrt_base import RRTBase
+from copy import deepcopy
 
 
 class RRTStar(RRTBase):
@@ -107,7 +108,7 @@ class RRTStar(RRTBase):
                     self.first_path.update(path, cost,
                                            self.time_elapsed, t + 1,
                                            self.samples_taken, self.nodes_taken)
-                    self.best_path = self.first_path
+                    self.best_path = deepcopy(self.first_path)
                 else:
                     self.best_path.update(path, cost,
                                           self.time_elapsed, t + 1,

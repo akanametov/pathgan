@@ -4,6 +4,7 @@ import numpy as np
 
 from pathlib import Path
 from PIL import Image
+from copy import deepcopy
 
 from path.rrt_base import RRTBase
 
@@ -54,8 +55,7 @@ class RRT(RRTBase):
                 self.first_path.update(path, cost,
                                        self.time_elapsed, t + 1,
                                        self.samples_taken, self.nodes_taken)
-                self.best_path = self.first_path
+                self.best_path = deepcopy(self.first_path)
                 return True
         return False
-
 

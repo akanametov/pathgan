@@ -183,11 +183,11 @@ class RRTBase(ABC):
     def is_goal_reachable(self,
                           xy_goal: Tuple[int, int]) -> Tuple[bool, Union[Tuple[int, int], Any]]:
         xy_near = next(self.nearest(xy_goal))
-        # works slower: if self.euclidean_distance(xy_near, xy_goal)[1] <= self.step_len:
-        if xy_goal in self.E and xy_near == self.E[xy_goal]:
-            return True, xy_near
-        if self.is_obstacle_free(xy_near, xy_goal):
-            return True, xy_near
+        if self.euclidean_distance(xy_near, xy_goal)[1] <= self.step_len:
+            if xy_goal in self.E and xy_near == self.E[xy_goal]:
+                return True, xy_near
+            if self.is_obstacle_free(xy_near, xy_goal):
+                return True, xy_near
         return False, None
 
     def compute_cost(self,
