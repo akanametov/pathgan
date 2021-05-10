@@ -2,13 +2,20 @@ import os
 import re
 import numpy as np
 import pandas as pd
-from typing import Tuple, List
+
+from typing import Tuple, List, Union, Optional, Iterable
+from collections import defaultdict, OrderedDict
 from PIL import Image
 from tqdm import tqdm
-from collections import defaultdict
+
+from functools import reduce
+import operator
 import multiprocessing
 import json
 
+from itertools import product
+
+import path
 from path.rrt_base import RRTBase, PathDescription
 from path.rrt_star import RRTStar
 
@@ -88,13 +95,19 @@ def process_all_results(map_params: dict,
                         mu: float = 0.1,
                         gamma: float = 10.,
                         n: int = 50,
+                        output_dir: str = 'logs',
                         output_fname: str = 'logs.txt'):
     seen_maps = set()
     n_results = get_n_results(map_params['data_folder'],
                               map_params['results_folder'],
                               map_params['results_file'])
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    output_path = os.path.join(output_dir, output_fname)
     with tqdm(total=n_results) as pbar:
-        with open(output_fname, 'w') as f:
+        with open(output_path, 'w') as f:
             for i in range(n_results):
                 map_params['result_row_id'] = i
                 out = get_map_and_task(**map_params)
@@ -211,3 +224,166 @@ def run_experiment(map_name: str, algorithm: RRTBase, params: dict, n: int = 50)
                       algo.samples_taken_history,
                       algo.nodes_taken_history)
     return report()
+
+
+def get_by_keys(log_dict: dict,
+                keys: list) -> Union[Iterable, dict]:
+    return reduce(operator.getitem, keys, log_dict)
+
+
+def set_by_keys(log_dict: dict,
+                keys: list):
+    value = get_by_keys(log_dict, keys[:-1])[keys[-1]]
+    get_by_keys(log_dict, keys[:-1])[keys[-1]] = [value]
+
+
+def rename(name: str, pattern: str):
+    pattern = re.compile(pattern)
+    num = re.findall(pattern, name)[0]
+    name = name.replace(num, str(int(num) // 10)).split('.')[0]
+    return name
+
+
+def collect_stats_by_maps(log_dir: str,
+                          log_file: str,
+                          pattern: Optional[str] = None):
+    seen_maps = set()
+    log_dict_rrt_s = OrderedDict()
+    log_dict_rrt_s_h = OrderedDict()
+    log_path = os.path.join(log_dir, log_file)
+    with open(log_path) as f:
+        while True:
+            rrt_s_line = f.readline()
+            if not rrt_s_line:
+                break
+            rrt_s_dict = json.loads(rrt_s_line.rstrip('\n'))
+            rrt_s_h_dict = json.loads(f.readline().rstrip('\n'))
+            map_name = rrt_s_dict['map_name']
+            if pattern is not None:
+                map_name = rename(map_name, pattern)
+            del rrt_s_dict['map_name']
+            del rrt_s_h_dict['map_name']
+            if map_name not in seen_maps:
+                seen_maps.add(map_name)
+                for key in rrt_s_dict:
+                    for key_ in rrt_s_dict[key]:
+                        rrt_s_dict[key][key_] = [rrt_s_dict[key][key_]]
+                        rrt_s_h_dict[key][key_] = [rrt_s_h_dict[key][key_]]
+                log_dict_rrt_s[map_name] = rrt_s_dict
+                log_dict_rrt_s_h[map_name] = rrt_s_h_dict
+            else:
+                for key in rrt_s_dict:
+                    for key_ in rrt_s_dict[key]:
+                        log_dict_rrt_s[map_name][key][key_].append(rrt_s_dict[key][key_])
+                        log_dict_rrt_s_h[map_name][key][key_].append(rrt_s_h_dict[key][key_])
+    for map_name in log_dict_rrt_s:
+        for key in log_dict_rrt_s[map_name]:
+            for key_ in log_dict_rrt_s[map_name][key]:
+                # list of lists, get mean
+                counts = log_dict_rrt_s[map_name][key][key_]
+                counts_h = log_dict_rrt_s_h[map_name][key][key_]
+                # for padding
+                l = max(map(lambda x: len(x), counts))
+                l_h = max(map(lambda x: len(x), counts_h))
+                for i, lst in enumerate(counts):
+                    cur_l = l - len(lst)
+                    if cur_l > 0:
+                        counts[i] = lst + [np.nan] * cur_l
+
+                for i, lst in enumerate(counts_h):
+                    cur_l = l_h - len(lst)
+                    if cur_l > 0:
+                        counts_h[i] = lst + [np.nan] * cur_l
+                counts = np.array(np.vstack(counts)).astype(float)
+                counts_h = np.array(np.vstack(counts_h)).astype(float)
+                counts[counts == float('inf')] = np.nan
+                counts_h[counts_h == float('inf')] = np.nan
+
+                counts = np.nanmean(counts, axis=0).tolist()
+                counts_h = np.nanmean(counts_h, axis=0).tolist()
+                log_dict_rrt_s[map_name][key][key_] = counts
+                log_dict_rrt_s_h[map_name][key][key_] = counts_h
+    output_filename = os.path.join(log_dir, '_'.join(['collected_stats', log_file]))
+    with open(output_filename, 'w') as f:
+        for map_name in log_dict_rrt_s:
+            map_dict = {'map_name': map_name}
+            rrt_s_dict = {**map_dict, **log_dict_rrt_s[map_name]}
+            f.write(json.dumps(rrt_s_dict))
+            f.write('\n')
+            rrt_s_h_dict = {**map_dict, **log_dict_rrt_s_h[map_name]}
+            f.write(json.dumps(rrt_s_h_dict))
+            f.write('\n')
+    return output_filename
+
+
+def get_stats_table(map_name: str,
+                    pad_len: int,
+                    counts: list):
+    map_name = [map_name.split('.')[0]] * 2 * pad_len
+    algo_type = ['RRT*-uniform'] * pad_len + ['RRT*-ROI'] * pad_len
+    return np.vstack((map_name, algo_type, counts))
+
+
+def get_stats_table_by_keys(log_dir: str,
+                            log_file: str,
+                            keys: List[str],
+                            csv_name: str):
+    tables = []
+    log_path = os.path.join(log_dir, log_file)
+    with open(log_path) as f:
+        while True:
+            rrt_s_line = f.readline()
+            if not rrt_s_line:
+                break
+            rrt_s = json.loads(rrt_s_line.rstrip('\n'))
+            rrt_s_h = json.loads(f.readline().rstrip('\n'))
+
+            stats_s = get_by_keys(rrt_s, keys)
+            stats_s_h = get_by_keys(rrt_s_h, keys)
+            map_name = rrt_s['map_name'].split('.')[0]
+            table = get_stats_table(map_name, len(stats_s), stats_s + stats_s_h)
+            tables.append(table)
+    tables = np.hstack(tables).T
+    df = pd.DataFrame(tables, columns=['map_name', 'algo_type', 'counts'])
+    df[['counts']] = df[['counts']].astype(float)
+    df.to_csv(os.path.join(log_dir, csv_name))
+    return df
+
+
+def get_plot_data_by_keys(log_dir: str,
+                          log_file: str,
+                          keys: List[str]) -> dict:
+    plot_data = {}
+    log_path = os.path.join(log_dir, log_file)
+    with open(log_path) as f:
+        while True:
+            rrt_s_line = f.readline()
+            if not rrt_s_line:
+                break
+            rrt_s = json.loads(rrt_s_line.rstrip('\n'))
+            rrt_s_h = json.loads(f.readline().rstrip('\n'))
+            data = get_by_keys(rrt_s, keys)
+            data_h = get_by_keys(rrt_s_h, keys)
+
+            map_name = rrt_s['map_name'].split('.')[0]
+            plot_data[map_name] = {'uniform': data, 'roi': data_h}
+    return plot_data
+
+
+def csv_and_plots_from_logs(log_dir: str,
+                            log_file: str,
+                            collect_stats: bool = False,
+                            pattern: str = '\d+'):
+    if collect_stats:
+        _, log_file = os.path.split(collect_stats_by_maps(log_dir, log_file, pattern))
+    prefix = '_'.join(log_file.split('_')[:-1])
+    for path_type, metric_name in product(path.PATH_TYPES, path.PATH_METRICS_KEYS):
+        csv_name = f'{prefix}_{path_type}_{metric_name}.csv'
+        get_stats_table_by_keys(log_dir, log_file, [path_type, metric_name], csv_name)
+    for metric_name in path.RUNS_METRICS:
+        plot_data = get_plot_data_by_keys(log_dir, log_file, [metric_name])
+        plot_file = f'{prefix}_{metric_name}.plot'
+        output = os.path.join(log_dir, plot_file)
+        with open(output, 'w') as f:
+            f.write(json.dumps(plot_data))
+            f.write('\n')
