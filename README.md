@@ -77,11 +77,13 @@ Output: G(V, E), paths
 V = [x_init] # nodes
 E = {} # edges in the form E[child] = parent
 x_max, y_max = grid_map.shape
+
+# output from trained GAN
+roi_map = ROIGenerator(x_init, x_goal, grid_map)
+# get list of nodes coordinates from ROI
+xy_roi = Discretize(roi_map)
+
 for i in range(MAX_ITER):
-	# output from trained GAN
-	roi_map = ROIGenerator(x_init, x_goal, grid_map)
-	# get list of nodes coordinates from ROI
-	xy_roi = Discretize(roi_map)
 	# sample with PROB from [0, x_max) x [0, y_max)
 	# otherwise sample from xy_roi
 	xy_rand = SampleFreeNode(roi_map, x_max, y_max, PROB)
