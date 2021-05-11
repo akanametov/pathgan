@@ -102,7 +102,7 @@ return (V, E)
 ```
 > Pathfinding example by RRT* with ROI heuristic
 
-<img src="assets/rrt_star_roi_demo.png" width="400" height="300">
+<img src="assets/rrt_star_roi_demo.png" width="300" height="400">
 
 
 * GAN architecture
@@ -139,9 +139,17 @@ The dataset can be generated in 4 steps:
     ```
     ./pathgan/data> python task_generator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--min_length MIN_LENGTH] [--n_tasks N_TASKS]
     ```
+  * Generate MovingAi tasks
+    ```
+    ./pathgan/data> python OpenAI_task_generator.py [--load_dir LOAD_DIR] [--save_dir SAVE_DIR] [--min_length MIN_LENGTH] [--n_tasks N_TASKS]
+    ```
   * Generate ROIs
     ```
     ./pathgan/data> python roi_generator.py [--start START] [--to TO] [--map_dir MAP_DIR] [--task_dir TASK_DIR] [--save_dir SAVE_DIR] [--n_runs N_RUNS]
+    ```
+  * Generate MovingAI ROIs
+    ```
+    ./pathgan/data> python OpenAI_roi_gen.py
     ```
 
 *for more information on parameters of dataset creation refer to [DATASET.md](DATASET.md)*
@@ -284,10 +292,10 @@ As mentioned, we evaluated:
 
 Here are few plots.
   <a><div class='column'>
-      <img title="First cost (collected by tasks), GAN" src="assets/collected_stats_gan_first_cost.png" align="center" height="400px" width="800px"/>
-      <img title="Best cost (collected by tasks), GAN"  src="assets/collected_stats_gan_best_cost.png" align="center" height="400px" width="800px"/>
-       <img title="Costs dynamics for RRT*-Uniform and RRT*-ROI, GAN" alt="Alt text" src="assets/gan_costs.png" align="center" height="400px" width="800px"/>
-       <img title="#nodes in graph dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_nodes.png" align="center" height="400px" width="800px"/>
+      <img title="First cost (collected by tasks), GAN" src="assets/collected_stats_gan_first_cost.png" align="center" height="400px" width="900px"/>
+      <img title="Best cost (collected by tasks), GAN"  src="assets/collected_stats_gan_best_cost.png" align="center" height="400px" width="900px"/>
+       <img title="Costs dynamics for RRT*-Uniform and RRT*-ROI, GAN" alt="Alt text" src="assets/gan_costs.png" align="center" height="400px" width="900px"/>
+       <img title="#nodes in graph dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_nodes.png" align="center" height="400px" width="900px"/>
   </div></a>
 
 From reports we can see that RRT* with ROI outperforms RRT* with uniform sampling in most cases (in terms of found paths costs, convergence speed to the optimal path and nodes taken and sampled, even if model didn't see given type of map). 
