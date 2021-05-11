@@ -102,7 +102,7 @@ return (V, E)
 ```
 > Pathfinding example by RRT* with ROI heuristic
 
-<img src="assets/rrt_star_roi_demo.png" width="300" height="300">
+<img src="assets/rrt_star_roi_demo.png" width="400" height="300">
 
 
 * GAN architecture
@@ -209,9 +209,9 @@ Here `'first'` and `'best'` are statistics for first and best paths found by RRT
 * `nodes` - nodes in graph (ordered by iterations), checked every 10 iterations and averaged by `n` runs
 To collect statistics (`.csv` and dicts for line plots) run
 ```
-./get_logs.py B --log_dir logs --log_file pix2pix_logs.txt [--collected]
+./get_logs.py B --log_dir logs --log_file pix2pix_logs.txt [--collect_stats]
 ```
-For mode details see LOGS.md.  After that run `app.py` - you will get html-pages with fancy plots! :)
+For more details see [LOGS.md](LOGS.md).  After that run `app.py` - you will get html-pages with fancy plots! :)
 
 Obtained RRT* logs for our data sets are available [here](https://disk.yandex.ru/d/BzI7QjytWJcz8A).
 
@@ -263,6 +263,7 @@ Obtained RRT* logs for our data sets are available [here](https://disk.yandex.ru
   - mIS - `average Inception Score` for all 88 batches (699 samples/8 samples per batch)
 
 **Connectivity**
+
 We run RRT on outputs of trained GAN and Pix2pix (ROI considered as free space, other regions-as obstacles). It should be noted that GAN and Pix2Pix saw MovingAI maps first time (it was sort of generalization ability test).
 
 | GAN                   |    Generated   |    MovingAI    |
@@ -271,6 +272,7 @@ We run RRT on outputs of trained GAN and Pix2pix (ROI considered as free space, 
 | **Pix2Pix (ours)**    |      65.4%     |    **67.4%**   |
 
 **Optimality**
+
 We run RRT* with ROI heuristic (non-uniform sampling) and without it (uniform sampling) for 50 times on each type of maps presented in test set (from our initial maps for which models were trained on, and MovingAI maps which were not seen by the models).  We collected statistics described in section [above](#path-metrics-generation). For RRT* we use `step_len=4`, `path_resolution=1`, `mu=0.1`, `max_iter=10000`, `gamma=10` for all maps.
 
 You can check full reports at repo `results` folder or via [github-pages](https://akanametov.github.io/pathgan/results/).
@@ -280,12 +282,12 @@ As mentioned, we evaluated:
 2. All costs and found path length (#nodes)
 3. Nodes sampled and nodes added in graph, checked every 10 iterations.
 
-Here is few plots.
+Here are few plots.
   <a><div class='column'>
-      <img title="First cost (collected by tasks), GAN" alt="Alt text" src="assets/collected_stats_gan_first_cost.png" align="center" height="400px" width="500px"/>
-      <img title="Best cost (collected by tasks), GAN" alt="Alt text" src="assets/collected_stats_gan_best_cost.png" align="center" height="400px" width="500px"/>
-       <img title="Costs dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_costs.png" align="center" height="400px" width="500px"/>
-       <img title="#nodes in graph dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_nodes.png" align="center" height="400px" width="500px"/>
+      <img title="First cost (collected by tasks), GAN" src="assets/collected_stats_gan_first_cost.png" align="center" height="400px" width="800px"/>
+      <img title="Best cost (collected by tasks), GAN"  src="assets/collected_stats_gan_best_cost.png" align="center" height="400px" width="800px"/>
+       <img title="Costs dynamics for RRT*-Uniform and RRT*-ROI, GAN" alt="Alt text" src="assets/gan_costs.png" align="center" height="400px" width="800px"/>
+       <img title="#nodes in graph dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_nodes.png" align="center" height="400px" width="800px"/>
   </div></a>
 
 From reports we can see that RRT* with ROI outperforms RRT* with uniform sampling in most cases (in terms of found paths costs, convergence speed to the optimal path and nodes taken and sampled, even if model didn't see given type of map). 
@@ -304,3 +306,4 @@ This project is licensed under MIT.
 * [MovingAI results (ROI's) of Original Generator (from paper)](https://disk.yandex.ru/d/qIws1FoEWAvVqA)
 * [MovingAI results (ROI's) of Pix2Pix Generator (ours)](https://disk.yandex.ru/d/HgmkUZEzDeIvrQ)
 * [Collected logs from RRT*](https://disk.yandex.ru/d/BzI7QjytWJcz8A)
+* [Full collected stats report](https://akanametov.github.io/pathgan/results/)
