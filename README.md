@@ -88,10 +88,10 @@ for i in range(MAX_ITER):
 	# otherwise sample from xy_roi
 	xy_rand = SampleFreeNode(roi_map, x_max, y_max, PROB)
 	xy_near = Nearest(xy_rand)
-	if xy_near not in V and NodeFree(xy_near):
-		xy_new_ = Steer(xy_near, xy_rand, MAX_EDGE_LEN)
+	xy_new_ = Steer(xy_near, xy_rand, MAX_EDGE_LEN)
+	if xy_new_ not in V and CellFree(xy_new_):
 		xy_neighbors = Nearest(xy_new_, SEARCH_RADIUS)
-		# best obstacle free path xy_new for xy_init->xy_near->xy_new
+		# best obstacle free path to xy_new, xy_init->xy_near->xy_new
 		xy_new = GetBestNeighbor(xy_init, xy_near, [xy_neighbors, xy_new_])
 		if ObstacleFree(xy_near, xy_new):
 			V.append(xy_new)
@@ -217,11 +217,11 @@ Here `'first'` and `'best'` are statistics for first and best paths found by RRT
 * `nodes` - nodes in graph (ordered by iterations), checked every 10 iterations and averaged by `n` runs
 To collect statistics (`.csv` and dicts for line plots) run
 ```
-./get_logs.py B --log_dir logs --log_file pix2pix_logs.txt [--collect_stats]
+./pathgan>./get_logs.py B --log_dir logs --log_file pix2pix_logs.txt [--collect_stats]
 ```
 For more details see [LOGS.md](LOGS.md).  After that run `app.py` - you will get html-pages with fancy plots! :)
 
-Obtained RRT* logs for our data sets are available [here](https://disk.yandex.ru/d/BzI7QjytWJcz8A).
+Obtained RRT* logs for our data sets are available [here](https://disk.yandex.ru/d/iG8Qqa5qFB1nLg).
 
 ### Results
 
