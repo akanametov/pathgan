@@ -102,7 +102,7 @@ return (V, E)
 ```
 > Pathfinding example by RRT* with ROI heuristic
 
-<img src="assets/rrt_star_roi_demo.png" width="300" height="400">
+<img src="assets/rrt_star_roi_demo.png" width="400" height="300">
 
 
 * GAN architecture
@@ -281,12 +281,12 @@ We run RRT on outputs of trained GAN and Pix2pix (ROI considered as free space, 
 
 **Optimality**
 
-We run RRT* with ROI heuristic (non-uniform sampling) and without it (uniform sampling) for 50 times on each type of maps presented in test set (from our initial maps for which models were trained on, and MovingAI maps which were not seen by the models).  We collected statistics described in section [above](#path-metrics-generation). For RRT* we use `step_len=4`, `path_resolution=1`, `mu=0.1`, `max_iter=10000`, `gamma=10` for all maps.
+We run RRT* with ROI heuristic (non-uniform sampling) and without it (uniform sampling) for 50 times on each type of maps presented in test set (from our initial maps on which models were trained, and MovingAI maps which were not seen by the models).  We collected statistics described in section [above](#path-metrics-generation). For RRT* we use `step_len=4`, `path_resolution=1`, `mu=0.1`, `max_iter=10000`, `gamma=10` for all maps.
 
 You can check full reports at repo `results` folder or via [github-pages](https://akanametov.github.io/pathgan/results/).
 
 As mentioned, we evaluated:
-1. Cost, time in seconds, time in iterations, nodes taken in graph and overall nodes sampled for **first found** and **best found** paths (compared to Euclidean distance from xy_init to xy_goal)
+1. Cost, time in seconds, time in iterations, nodes taken in graph and overall nodes sampled for **first found** and **best found** paths (compared by Euclidean distance from xy_init to xy_goal)
 2. All costs and found path length (#nodes)
 3. Nodes sampled and nodes added in graph, checked every 10 iterations.
 
