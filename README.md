@@ -53,6 +53,14 @@ A Pytorch implementation of [**Generative Adversarial Network for Heuristics of 
 	```
     pip install -r requirements.txt
 	```
+* Download generated dataset
+	```
+    bash download.sh
+	```
+* Download MovingAI dataset
+	```
+    bash download_movingai.sh
+	```
 
   
 ## Content
@@ -73,7 +81,7 @@ The overall structure of the PathGAN consists of two 'parts':
 * Pathfinding algorithm
 ```
 Input: x_init, x_goal, grid_map
-Output: G(V, E), paths
+Output: G(V, E)
 V = [x_init] # nodes
 E = {} # edges in the form E[child] = parent
 x_max, y_max = grid_map.shape
@@ -84,20 +92,20 @@ roi_map = ROIGenerator(x_init, x_goal, grid_map)
 xy_roi = Discretize(roi_map)
 
 for i in range(MAX_ITER):
-	# sample with PROB from [0, x_max) x [0, y_max)
-	# otherwise sample from xy_roi
-	xy_rand = SampleFreeNode(roi_map, x_max, y_max, PROB)
-	xy_near = Nearest(xy_rand)
-	xy_new_ = Steer(xy_near, xy_rand, MAX_EDGE_LEN)
-	if xy_new_ not in V and CellFree(xy_new_):
-		xy_neighbors = Nearest(xy_new_, SEARCH_RADIUS)
-		# best obstacle free path to xy_new, xy_init->xy_near->xy_new
-		xy_new = GetBestNeighbor(xy_init, xy_near, [xy_neighbors, xy_new_])
-		if ObstacleFree(xy_near, xy_new):
-			V.append(xy_new)
-			E[xy_new] = xy_near
-			# try to obtain shorter paths through xy_new: xy_init->xy_new->xy_near
-			Rewire(xy_init, xy_new, [xy_neighbors, xy_new_])
+  # sample uniform with PROB from [0, x_max) * [0, y_max)
+  # otherwise sample uniform from xy_roi
+  xy_rand = SampleFreeNode(roi_map, x_max, y_max, PROB)
+  xy_near = Nearest(xy_rand)
+  xy_new = Steer(xy_near, xy_rand, MAX_EDGE_LEN)
+  if xy_new not in V and CellFree(xy_new):
+    xy_neighbors = Nearest(xy_new, SEARCH_RADIUS)
+    # choose best parent to get obstacle free path to xy_new, xy_init->xy_near_best->xy_new
+    xy_near_best = GetBestNeighbor(xy_init, xy_new, xy_neighbors)
+    if ObstacleFree(xy_near_best, xy_new):
+       V.append(xy_new)
+       E[xy_new] = xy_near_best
+       # try to obtain shorter paths through xy_new: xy_init->xy_new->xy_neighbor (for all xy_neighbors)
+       Rewire(xy_init, xy_new, xy_neighbors)
 return (V, E)
 ```
 > Pathfinding example by RRT* with ROI heuristic
@@ -105,10 +113,13 @@ return (V, E)
 <img src="assets/rrt_star_roi_demo.png" width="400" height="300">
 
 
-* GAN architecture
+* GAN architecture: Original
 
 <a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
 
+* GAN architecture: Pix2Pix
+
+<a><img src="assets/pixgan.png" align="center" height="300px" width="600px"/></a>
 
 ### Dataset
 
@@ -250,8 +261,8 @@ Obtained RRT* logs for our data sets are available [here](https://disk.yandex.ru
 
 * **Original vs Pix2Pix on MovingAI dataset**
   <a><div class='column'>
-      <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
-      <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
+      <img title="Original" alt="Alt text" src="assets/mresults.png" align="center" height="400px" width="500px"/>
+      <img title="Pix2Pix" alt="Alt text" src="assets/mpixresults.png" align="center" height="400px" width="500px"/>
   </div></a>
 
   | GAN                      |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params *  |
@@ -293,10 +304,10 @@ As mentioned, we evaluated:
 Here are few plots.
 <a>
     <div class='column'>
-        <img title="First cost (collected by tasks), GAN" src="assets/collected_stats_gan_first_cost.png" align="center" height="250px" width="900px"/>
-        <img title="Best cost (collected by tasks), GAN"  src="assets/collected_stats_gan_best_cost.png" align="center" height="250px" width="900px"/>
-        <img title="Costs dynamics for RRT*-Uniform and RRT*-ROI, GAN" alt="Alt text" src="assets/gan_costs.png" align="center" height="250px" width="900px"/>
-        <img title="#nodes in graph dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_nodes.png" align="center" height="250px" width="900px"/>
+        <img title="First cost (collected by tasks), GAN" src="assets/collected_stats_gan_first_cost.png" align="center" height="300px" width="900px"/>
+        <img title="Best cost (collected by tasks), GAN"  src="assets/collected_stats_gan_best_cost.png" align="center" height="300px" width="900px"/>
+        <img title="Costs dynamics for RRT*-Uniform and RRT*-ROI, GAN" alt="Alt text" src="assets/gan_costs.png" align="center" height="300px" width="900px"/>
+        <img title="#nodes in graph dynamics for RRT*-Uniform and RRT*-ROI" alt="Alt text" src="assets/gan_nodes.png" align="center" height="300px" width="900px"/>
   </div>
 </a>
 
