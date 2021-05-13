@@ -53,6 +53,14 @@ A Pytorch implementation of [**Generative Adversarial Network for Heuristics of 
 	```
     pip install -r requirements.txt
 	```
+* Download generated dataset
+	```
+    bash download.sh
+	```
+* Download MovingAI dataset
+	```
+    bash download_movingai.sh
+	```
 
   
 ## Content
