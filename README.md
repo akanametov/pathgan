@@ -105,10 +105,13 @@ return (V, E)
 <img src="assets/rrt_star_roi_demo.png" width="400" height="300">
 
 
-* GAN architecture
+* GAN architecture: Original
 
 <a><img src="assets/detailed_gan.jpg" align="center" height="300px" width="600px"/></a>
 
+* GAN architecture: Pix2Pix
+
+<a><img src="assets/pixgan.png" align="center" height="300px" width="600px"/></a>
 
 ### Dataset
 
@@ -250,8 +253,8 @@ Obtained RRT* logs for our data sets are available [here](https://disk.yandex.ru
 
 * **Original vs Pix2Pix on MovingAI dataset**
   <a><div class='column'>
-      <img title="Original" alt="Alt text" src="assets/mresult.png" align="center" height="400px" width="500px"/>
-      <img title="Pix2Pix" alt="Alt text" src="assets/mpixresult.png" align="center" height="400px" width="500px"/>
+      <img title="Original" alt="Alt text" src="assets/mresults.png" align="center" height="400px" width="500px"/>
+      <img title="Pix2Pix" alt="Alt text" src="assets/mpixresults.png" align="center" height="400px" width="500px"/>
   </div></a>
 
   | GAN                      |      mIoU     |    mDICE    |    mFID    |    mIS    |   # of params *  |
