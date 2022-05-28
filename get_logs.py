@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import argparse
 import yaml
-import path.utils as utils
+import pathgan.utils as utils
 
 """
 Example usage:
