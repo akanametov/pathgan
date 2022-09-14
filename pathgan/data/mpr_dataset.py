@@ -29,6 +29,8 @@ class MPRDataset(Dataset):
         Dataframe with map/task/roi pairs.
     transform: Callable
         Transforms for map/task/roi pairs.
+    to_binary: bool (default=False)
+        If to load data (image) as binary tensor.
     """
     def __init__(
         self,
@@ -38,6 +40,7 @@ class MPRDataset(Dataset):
         csv_file: pd.DataFrame,
         transform: Optional[Callable] = None,
         test: bool = False,
+        to_binary: bool = False,
     ):
         self.map_dir = map_dir
         self.point_dir = point_dir
@@ -45,6 +48,7 @@ class MPRDataset(Dataset):
         self.csv_file = csv_file
         self.transform = transform
         self.test = test
+        self.to_binary = to_binary
 
     def __len__(self) -> int:
         return len(self.csv_file)
@@ -57,10 +61,16 @@ class MPRDataset(Dataset):
         if not self.test:
             roi_path = f"{self.roi_dir}/{map_name}/{row['roi']}"
 
-        map_img = np.array(Image.open(map_path).convert('RGB'))
-        point_img = np.array(Image.open(point_path).convert('RGB'))
-        if not self.test:
-            roi_img = np.array(Image.open(roi_path).convert('RGB'))
+        if self.to_binary:
+            map_img = np.array(Image.open(map_path).convert("L"))
+            point_img = np.array(Image.open(point_path).convert("L"))
+            if not self.test:
+                roi_img = np.array(Image.open(roi_path).convert("L"))
+        else:
+            map_img = np.array(Image.open(map_path).convert("RGB"))
+            point_img = np.array(Image.open(point_path).convert("RGB"))
+            if not self.test:
+                roi_img = np.array(Image.open(roi_path).convert("RGB"))
 
         if self.transform is not None:
             map_img = self.transform(map_img)
