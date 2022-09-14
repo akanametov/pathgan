@@ -32,11 +32,11 @@ if __name__ == '__main__':
             std=(0.5, 0.5, 0.5),
         ),
     ])
-    df = pd.read_csv('dataset/test.csv')
+    df = pd.read_csv('data/generated_dataset/dataset/test.csv')
     dataset = MPRDataset(
-        map_dir = 'dataset/maps',
-        point_dir = 'dataset/tasks',
-        roi_dir = 'dataset/tasks',
+        map_dir = 'data/generated_dataset/dataset/maps',
+        point_dir = 'data/generated_dataset/dataset/tasks',
+        roi_dir = 'data/generated_dataset/dataset/tasks',
         csv_file = df,
         transform = transform,
     )
