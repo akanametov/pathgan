@@ -39,7 +39,7 @@ class MPRDataset(Dataset):
         roi_dir: str,
         csv_file: pd.DataFrame,
         transform: Optional[Callable] = None,
-        test: bool = False,
+        return_meta: bool = False,
         to_binary: bool = False,
     ):
         self.map_dir = map_dir
@@ -47,7 +47,7 @@ class MPRDataset(Dataset):
         self.roi_dir = roi_dir
         self.csv_file = csv_file
         self.transform = transform
-        self.test = test
+        self.return_meta = return_meta
         self.to_binary = to_binary
 
     def __len__(self) -> int:
@@ -58,25 +58,23 @@ class MPRDataset(Dataset):
         map_name = row["map"].split(".")[0]
         map_path = f"{self.map_dir}/{row['map']}"
         point_path = f"{self.point_dir}/{map_name}/{row['task']}"
-        if not self.test:
-            roi_path = f"{self.roi_dir}/{map_name}/{row['roi']}"
+        roi_path = f"{self.roi_dir}/{map_name}/{row['roi']}"
+        meta = {"map_path": map_path, "point_path": point_path, "roi_path": roi_path}
 
         if self.to_binary:
             map_img = np.array(Image.open(map_path).convert("L"))
             point_img = np.array(Image.open(point_path).convert("L"))
-            if not self.test:
-                roi_img = np.array(Image.open(roi_path).convert("L"))
+            roi_img = np.array(Image.open(roi_path).convert("L"))
         else:
             map_img = np.array(Image.open(map_path).convert("RGB"))
             point_img = np.array(Image.open(point_path).convert("RGB"))
-            if not self.test:
-                roi_img = np.array(Image.open(roi_path).convert("RGB"))
+            roi_img = np.array(Image.open(roi_path).convert("RGB"))
 
         if self.transform is not None:
             map_img = self.transform(map_img)
             point_img = self.transform(point_img)
-            if not self.test:
-                roi_img = self.transform(roi_img)
-        if not self.test:
-            return map_img, point_img, roi_img
-        return map_img, point_img
+            roi_img = self.transform(roi_img)
+
+        if self.return_meta:
+            return map_img, point_img, roi_img, meta
+        return map_img, point_img, roi_img
