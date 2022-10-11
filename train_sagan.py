@@ -16,12 +16,12 @@ from pathgan.train import SAGANTrainer
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog = "top", description="Training GAN (from original paper)")
+    parser.add_argument('--dataset_path', default='data/generated_dataset/dataset', help='Path to dataset')
     parser.add_argument("--batch_size", type=int, default=8, help="Batch size (default: 8)")
     parser.add_argument("--epochs", type=int, default=3, help="Number of `epochs` GAN will be trained (default: 3)")
     parser.add_argument("--g_lr", type=float, default=0.0001, help="Learning rate of Generator (default: 0.0001)")
     parser.add_argument("--md_lr", type=float, default=0.00005, help="Learning rate of Map Discriminator (default: 0.00005)")
     parser.add_argument("--pd_lr", type=float, default=0.00005, help="Learning rate of Point Discriminator (default: 0.00005)")
-    parser.add_argument("--load_dir", default=None, help='Load directory to continue training (default: "None")')
     parser.add_argument("--save_dir", default="checkpoints/sagan", help='Save directory (default: "checkpoints/sagan")')
     parser.add_argument("--device", type=str, default="cuda:0", help="Device (default: 'cuda:0')")
     args = parser.parse_args()
@@ -35,12 +35,11 @@ if __name__ == "__main__":
             std=(0.5, 0.5, 0.5),
         ),
     ])
-    df = pd.read_csv("dataset/train.csv")
     dataset = MPRDataset(
-        map_dir="dataset/maps",
-        point_dir="dataset/tasks",
-        roi_dir="dataset/tasks",
-        csv_file=df,
+        map_dir=os.path.join(args.dataset_path, 'maps'),
+        point_dir=os.path.join(args.dataset_path, 'tasks'),
+        roi_dir=os.path.join(args.dataset_path, 'tasks'),
+        csv_file=pd.read_csv(os.path.join(args.dataset_path, 'train.csv')),
         transform=transform,
     )
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True)
@@ -48,10 +47,6 @@ if __name__ == "__main__":
     generator = SAGenerator()
     map_discriminator = MapDiscriminator()
     point_discriminator = PointDiscriminator()
-    # Load weights
-    if args.load_dir:
-        print('=========== Loading weights for Generator ===========')
-        generator.load_state_dict(torch.load(args.load_dir))
     # Losses
     g_criterion = AdaptiveSAGeneratorLoss()
     md_criterion = DiscriminatorLoss()
@@ -73,11 +68,10 @@ if __name__ == "__main__":
         pd_optimizer=pd_optimizer,
         device=device,
     )
-    print('============== Training Started ==============')
+    print("Start training")
     trainer.fit(dataloader, epochs=args.epochs, device=device)
-    print('============== Training Finished! ==============')
     if args.save_dir:
-        print('=========== Saving weights for SAGAN ===========')
+        print(f"Saving weights for SAGAN to: {args.save_dir}")
         os.makedirs(args.save_dir, exist_ok=True)
         torch.save(generator.cpu().state_dict(), os.path.join(args.save_dir, "generator.pt"))
         torch.save(map_discriminator.cpu().state_dict(), os.path.join(args.save_dir, "map_discriminator.pt"))

@@ -1,8 +1,31 @@
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
 from torchvision.models import inception_v3
 from .functional import kl_divergence, covariance, frechet_distance 
+
+
+def intersection_over_union(roi_pred, roi_true):
+    roi_pred = np.sum(roi_pred, axis=-1)
+    roi_pred = (roi_pred < 0.5 * np.max(roi_pred)).astype(int)
+    roi_true = np.sum(roi_true, axis=-1)
+    roi_true = (roi_true < 0.5 * np.max(roi_true)).astype(int)
+    inter = (roi_pred * roi_true).sum()
+    union = roi_pred.sum() + roi_true.sum()
+    iou_value = inter / (union - inter + 1e-6)
+    return iou_value
+
+
+def jaccard_coefficient(roi_pred, roi_true):
+    roi_pred = np.sum(roi_pred, axis=-1)
+    roi_pred = (roi_pred < 0.5 * np.max(roi_pred)).astype(int)
+    roi_true = np.sum(roi_true, axis=-1)
+    roi_true = (roi_true < 0.5 * np.max(roi_true)).astype(int)
+    inter = (roi_pred * roi_true).sum()
+    union = roi_pred.sum() + roi_true.sum()
+    dice_value = 2 * inter / (union + 1e-6)
+    return dice_value
 
 
 class KLDivergence(nn.Module):

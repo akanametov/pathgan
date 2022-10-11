@@ -32,7 +32,7 @@ class PathDescription(object):
     """
     def __init__(
         self,
-        path: List,
+        path: Optional[List] = None,
         cost: float = float('inf'),
         time_sec: float = 0.,
         time_it: int = 0,
@@ -40,7 +40,7 @@ class PathDescription(object):
         nodes_taken: int = 0,
     ):
         """Initialize."""
-        self.path = path
+        self.path = path if path is not None else []
         self.cost = cost
         self.time_sec = time_sec
         self.time_it = time_it
