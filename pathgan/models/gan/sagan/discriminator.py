@@ -2,12 +2,11 @@
 
 import torch
 from torch import nn, Tensor
-from ..layers import Conv, SelfAttention
+from ..layers import Conv, ShuffleAttention
 
 
 class MapDiscriminator(nn.Module):
     """MapDiscriminator.
-
     Parameters
     ----------
     map_channels: int, (default=3)
@@ -29,12 +28,12 @@ class MapDiscriminator(nn.Module):
         super().__init__()
         self.map_proj = Conv(map_channels, hid_channels//2, activation="lrelu")
         self.roi_proj = Conv(roi_channels, hid_channels//2, activation="lrelu")
-        self.map_attn = SelfAttention(hid_channels//2)
-        self.roi_attn = SelfAttention(hid_channels//2)
+        self.map_attn = ShuffleAttention(hid_channels//2)
+        self.roi_attn = ShuffleAttention(hid_channels//2)
 
         self.dn1 = Conv(1* hid_channels, 2* hid_channels, activation="lrelu", normalization="batch")
         self.dn2 = Conv(2* hid_channels, 4* hid_channels, activation="lrelu", normalization="batch")
-        self.attn = SelfAttention(4* hid_channels)
+        self.attn = ShuffleAttention(4* hid_channels)
         self.dn3 = Conv(4* hid_channels, 8* hid_channels, activation="lrelu", normalization="batch")
         
         self.output = nn.Conv2d(8* hid_channels, out_channels, kernel_size=2)
@@ -56,7 +55,6 @@ class MapDiscriminator(nn.Module):
 
 class PointDiscriminator(nn.Module):
     """Point Discriminator.
-
     Parameters
     ----------
     point_channels: int, (default=3)
@@ -78,12 +76,12 @@ class PointDiscriminator(nn.Module):
         super().__init__()
         self.point_proj = Conv(point_channels, 3 * hid_channels // 4, activation="lrelu")
         self.roi_proj = Conv(roi_channels, hid_channels // 4, activation="lrelu")
-        self.point_attn = SelfAttention(3 * hid_channels // 4)
-        self.roi_attn = SelfAttention(hid_channels//4)
+        self.point_attn = ShuffleAttention(3 * hid_channels // 4)
+        self.roi_attn = ShuffleAttention(hid_channels//4)
 
         self.dn1 = Conv(hid_channels, 2 * hid_channels, activation="lrelu", normalization="batch")
         self.dn2 = Conv(2 * hid_channels, 4 * hid_channels, activation="lrelu", normalization="batch")
-        self.attn = SelfAttention(4 * hid_channels)
+        self.attn = ShuffleAttention(4 * hid_channels)
         self.dn3 = Conv(4 * hid_channels, 8 * hid_channels, activation="lrelu", normalization="batch")
 
         self.output = nn.Conv2d(8* hid_channels, out_channels, kernel_size=2)
